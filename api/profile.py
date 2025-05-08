@@ -129,7 +129,7 @@ async def profile_patch(request: web.Request) -> web.Response:
             return web.json_response({"name": "subjects", "error": "The list type is expected"}, status=400)
             
         
-        return await func_db.profile_edit(email, email_new, first_name, password_old, password_new, class_number)
+        return await func_db.profile_edit(email, email_new, first_name, password_old, password_new, class_number, subjects)
     except Exception as e:
         logger.error("profile error: ", e)
         return web.Response(status=500, text=str(e))

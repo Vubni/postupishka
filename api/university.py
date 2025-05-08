@@ -64,7 +64,7 @@ async def add_university(request: web.Request) -> web.Response:
     summary="Получение списка направлений",
     description="Возвращает список направлений выбранных пользователем. Для доступа требуется Bearer-токен в заголовке Authorization",
     responses={
-        200: {"description": "Списокв направлений", "schema": sh},
+        200: {"description": "Списокв направлений"},
         400: {"description": "Отсутствует один из параметров", "schema": sh.Error400Schema},
         401: {"description": "Авторизация не выполнена"},
         500: {"description": "Server-side error (Ошибка на стороне сервера)"}

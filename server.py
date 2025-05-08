@@ -76,8 +76,8 @@ if __name__ == "__main__":
         
         web.post(prefix + 'university/add', university.add_university),
         web.get(prefix + 'university', university.get_university),
-        web.delete(prefix + 'university', university.del_university),
-        web.post(prefix + 'university/update', university.update_university),
+        # web.delete(prefix + 'university', university.del_university),
+        # web.post(prefix + 'university/update', university.update_university),
         
         # web.get(prefix + 'telegram', None),
         # web.delete(prefix + 'telegram', None),

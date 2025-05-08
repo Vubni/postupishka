@@ -32,7 +32,7 @@ async def create_ai(email:str):
 async def generate_question(email:str):
     if email not in list_ai:
         await create_ai(email)
-    return json.loads(list_ai[email].question().answer)
+    return {"question": list_ai[email].question().answer}
 
 def add_answer(email:str, content:str):
     if email not in list_ai:

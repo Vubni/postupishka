@@ -37,6 +37,11 @@ class Ai:
         self.price = 0
         if system_prompt:
             self.messages.append({"role": "system", "content": system_prompt})
+
+    def edit_system_prompt(self, system_prompt):
+        self.system_prompt = system_prompt
+        self.messages[0] = {"role": "system", "content": system_prompt}
+
             
     def add_question(self, content:str):
         self.messages.append({"role": "user", "content": content})
