@@ -114,3 +114,18 @@
 2025-05-11 13:22:15 - INFO - openai._base_client - Retrying request to /chat/completions in 0.804492 seconds
 2025-05-11 13:22:17 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2025-05-11 13:22:47 - INFO - aiohttp.access - ::1 [11/May/2025:13:21:32 +0300] "GET /specialization/question HTTP/1.1" 500 191 "-" "python-requests/2.32.3"
+2025-05-11 14:39:19 - INFO - openai._base_client - Retrying request to /chat/completions in 0.494966 seconds
+2025-05-11 14:40:50 - INFO - openai._base_client - Retrying request to /chat/completions in 0.795375 seconds
+2025-05-11 14:44:01 - INFO - openai._base_client - Retrying request to /chat/completions in 0.480727 seconds
+2025-05-11 14:45:32 - INFO - openai._base_client - Retrying request to /chat/completions in 0.999564 seconds
+2025-05-11 14:47:00 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-11 14:47:07 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-11 14:49:01 - INFO - openai._base_client - Retrying request to /chat/completions in 0.427639 seconds
+2025-05-11 14:53:06 - INFO - openai._base_client - Retrying request to /chat/completions in 0.494472 seconds
+2025-05-11 14:54:37 - INFO - openai._base_client - Retrying request to /chat/completions in 0.965212 seconds
+2025-05-11 15:21:16 - INFO - openai._base_client - Retrying request to /chat/completions in 0.415173 seconds
+2025-05-11 15:21:16 - INFO - openai._base_client - Retrying request to /chat/completions in 0.770488 seconds
+2025-05-11 15:21:49 - INFO - openai._base_client - Retrying request to /chat/completions in 0.426791 seconds
+2025-05-11 15:22:18 - INFO - openai._base_client - Retrying request to /chat/completions in 0.456401 seconds
+2025-05-11 15:22:27 - INFO - httpx - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-11 15:22:57 - INFO - openai._base_client - Retrying request to /chat/completions in 0.990916 seconds

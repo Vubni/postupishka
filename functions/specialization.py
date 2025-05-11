@@ -10,7 +10,7 @@ list_ai = {}
 browse_ai = Ai(PROMPT_ABBREVIATIONS, model="gpt-4.1-nano")
 get_result_wait = {}
 
-def check_browse(content:str):
+async def check_browse(content:str):
     results=gs.search(content,num_results=2)
     result_text = ""
     for link in results:
@@ -18,7 +18,7 @@ def check_browse(content:str):
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "html.parser")
             result_text += ' '.join(soup.get_text().split())
-    res = browse_ai.question(f"Изначально искали: {content}\n"  + result_text)
+    res = await browse_ai.question(f"Изначально искали: {content}\n"  + result_text)
     return res.answer
 
 async def create_ai(email:str):
@@ -35,7 +35,7 @@ async def generate_question(email:str):
         await create_ai(email)
     if list_ai[email].messages[-1]["role"] == "system":
         return json.loads(list_ai[email].messages[-1]["content"])
-    return json.loads(list_ai[email].question().answer)
+    return json.loads((await list_ai[email].question()).answer)
 
 def add_answer(email:str, content:str):
     if email not in list_ai:
@@ -49,7 +49,7 @@ def add_answer(email:str, content:str):
 
 async def get_result_handler(email:str):
     if email not in get_result_wait:
-        get_result_wait[email] = asyncio.create_task(get_result)
+        get_result_wait[email] = asyncio.create_task(get_result(email))
         return {"status": "processing"}
     if get_result_wait[email].done():
         return {"status": "done", "result": get_result_wait[email].result()}
@@ -61,11 +61,11 @@ async def get_result(email:str):
         return False
     list_ai[email].edit_system_prompt(PROMPT_BROWSE)
     for i in range(5):
-        res = check_browse(list_ai[email].question("Создай запрос для браузера").answer)
+        res = await check_browse((await list_ai[email].question("Создай запрос для браузера")).answer)
         list_ai[email].add_question("Данные из интернета о вузах: " + res)
 
     
     list_ai[email].edit_system_prompt(PROMPT_SPECIALISATION)
-    res = list_ai[email].question("Выдай список вузов")
+    res = await list_ai[email].question("Выдай список вузов")
     del list_ai[email]
     return json.loads(res.answer)
