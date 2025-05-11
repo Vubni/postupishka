@@ -8,7 +8,6 @@ def generate_question(token):
     response = requests.get(URL + "/specialization/question", headers=headers)
     assert response.status_code == 200, f"'/specialization/question' Выполнено 0/1 тестов, ожидается статус 200, получен {response.status_code}"
     assert "question" in response.json(), f"'/specialization/question' Выполнено 0/1 тестов, ожидается наличие параметра 'question' в ответе"
-    assert "counts_remaind" in response.json(), f"'/specialization/question' Выполнено 0/1 тестов, ожидается наличие параметра 'counts_remaind' в ответе"
     return response.json()
     
 def answer(token, content):

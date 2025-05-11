@@ -3,11 +3,12 @@ from ai.prompts import PROMPT_QUESTIONS, PROMPT_SPECIALISATION, PROMPT_BROWSE, P
 import googlesearch as gs
 import requests
 from bs4 import BeautifulSoup
-import json
+import json, asyncio
 from database import functions as func_db
 
 list_ai = {}
 browse_ai = Ai(PROMPT_ABBREVIATIONS, model="gpt-4.1-nano")
+get_result_wait = {}
 
 def check_browse(content:str):
     results=gs.search(content,num_results=2)
@@ -32,15 +33,30 @@ async def create_ai(email:str):
 async def generate_question(email:str):
     if email not in list_ai:
         await create_ai(email)
-    return {"question": list_ai[email].question().answer}
+    if list_ai[email].messages[-1]["role"] == "system":
+        return json.loads(list_ai[email].messages[-1]["content"])
+    return json.loads(list_ai[email].question().answer)
 
 def add_answer(email:str, content:str):
     if email not in list_ai:
         return False
+    if list_ai[email].messages[-1]["role"] == "user":
+        print(list_ai[email].messages)
+        print(list_ai[email].messages[-1])
+        return False
     list_ai[email].add_question(content)
     return True
 
-def get_result(email:str):
+async def get_result_handler(email:str):
+    if email not in get_result_wait:
+        get_result_wait[email] = asyncio.create_task(get_result)
+        return {"status": "processing"}
+    if get_result_wait[email].done():
+        return {"status": "done", "result": get_result_wait[email].result()}
+    else:
+        return {"status": "processing"}
+
+async def get_result(email:str):
     if email not in list_ai:
         return False
     list_ai[email].edit_system_prompt(PROMPT_BROWSE)

@@ -103,7 +103,7 @@ async def get_result(request: web.Request) -> web.Response:
         if type(email) != str:
             return email
         
-        result = func.get_result(email)
+        result = await func.get_result_handler(email)
         if not result:
             return web.json_response({"error": "Not a single question has been asked! Nothing to answer."}, status=400)
         return web.json_response(result, status=200)

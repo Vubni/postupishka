@@ -42,11 +42,10 @@ class Ai:
         self.system_prompt = system_prompt
         self.messages[0] = {"role": "system", "content": system_prompt}
 
-            
     def add_question(self, content:str):
         self.messages.append({"role": "user", "content": content})
     
-    def question(self, content=None, memory=False):
+    def question(self, content=None, memory=True):
         if content:
             user_message = {"role": "user", "content": content}
         
