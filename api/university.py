@@ -45,9 +45,10 @@ async def add_university(request: web.Request) -> web.Response:
         except Exception as e:
             return web.json_response({"name": "direction", "error": "object is not passed or has an invalid type"}, status=400)
         try:
-            scores = list(request_data.get('scores'))
+            scores = dict(request_data.get('scores'))
             scores["min"], scores["avg"], scores["bud"]
         except Exception as e:
+            print(e)
             return web.json_response({"name": "scores", "error": "object is not passed or has an invalid type"}, status=400)
         
         res = await func.add_university(email, university, direction, scores)

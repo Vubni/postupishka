@@ -36,7 +36,7 @@ async def question(request: web.Request) -> web.Response:
         result = await func.generate_question(email)
         return web.json_response(result, status=200)
     except Exception as e:
-        logger.error("auth error: ", e)
+        logger.error("question error: ", e)
         return web.Response(status=500, text=str(e))
     
     
@@ -76,7 +76,7 @@ async def answer(request: web.Request) -> web.Response:
             return web.json_response({"error": "Not a single question has been asked! Nothing to answer."}, status=400)
         return web.Response(status=204)
     except Exception as e:
-        logger.error("auth error: ", e)
+        logger.error("answer error: ", e)
         return web.Response(status=500, text=str(e))
     
 @docs(
@@ -108,5 +108,5 @@ async def get_result(request: web.Request) -> web.Response:
             return web.json_response({"error": "Not a single question has been asked! Nothing to answer."}, status=400)
         return web.json_response(result, status=200)
     except Exception as e:
-        logger.error("auth error: ", e)
+        logger.error("get_result error: ", e)
         return web.Response(status=500, text=str(e))
