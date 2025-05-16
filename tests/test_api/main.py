@@ -15,10 +15,9 @@ if __name__ == "__main__":
     number = 10
     while number > 0:
         res = specialization.generate_question(token)
-        number = res["counts_remaind"]
         print(res["question"])
-        print(number)
         specialization.answer(token, input())
+        number-=1
 
     print(specialization.get_result(token))
     
