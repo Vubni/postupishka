@@ -7,3 +7,7 @@ async def add_university(email, university, direction, scores):
             return False
         await db.execute("INSERT INTO specializations (university, direction, scores) VALUES ($1, $2, $3)", (university, direction, scores))
     return True
+
+async def get_university(email):
+    async with Database() as db:
+        return await db.execute("SELECT * FROM specializations WHERE email=$1", (email,))

@@ -1,4 +1,4 @@
-import requests, os
+import requests, os, time
 from config import URL
 
 
@@ -12,13 +12,17 @@ if __name__ == "__main__":
     profile.test_tg(token)
     
     import specialization
-    number = 10
+    number = 5
     while number > 0:
         res = specialization.generate_question(token)
         print(res["question"])
         specialization.answer(token, input())
         number-=1
 
-    print(specialization.get_result(token))
+    res = {"status": "eee"}
+    while res["status"] != "done":
+        res = specialization.get_result(token)
+        print(res)
+        time.sleep(1)
     
-    profile.delete_profile(token)
+    # profile.delete_profile(token)

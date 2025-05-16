@@ -37,7 +37,7 @@ async def register_user(email : str, password : str, first_name: str, class_numb
         await db.execute("DELETE FROM tokens WHERE date < CURRENT_DATE - INTERVAL '1 month'")
         code = generate_unique_code()
         await db.execute("INSERT INTO tokens (email, token) VALUES ($1, $2)", (email, code,))
-        await db.execute("INSERT INTO subjects (email, subject) VALUES ($1, $2)", (email, "rus",))
+        await db.execute("INSERT INTO subjects (email, subject) VALUES ($1, $2)", (email, "Русский язык",))
     return code
             
 async def auth(identifier:str, password:str) -> str:
