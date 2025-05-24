@@ -6,18 +6,19 @@ from aiohttp_apispec import (
 )
 from config import logger
 from docs import schems as sh
-from functions import university as func
+from functions import schedule as func
 import core
 from telegram.create_bot import bot
 
 @docs(
-    tags=["University"],
-    summary="Добавление направления в профиль",
-    description="Добавляет вуз как цель пользователю. Для доступа требуется Bearer-токен в заголовке Authorization",
+    tags=["Shedule"],
+    summary="Добавление информации о расписании",
+    description="Добавляет информацию о необходимом расписании. Ожидается максимально подробная информация и занятиях на ближайшие дни, сразу выполняется перерасчёт расписания. Для доступа требуется Bearer-токен в заголовке Authorization",
     responses={
-        204: {"description": "Направление успешно добавлено"},
+        201: {"description": "Информация о расписании успешно добавлена"},
         400: {"description": "Отсутствует один из параметров", "schema": sh.Error400Schema},
         401: {"description": "Авторизация не выполнена"},
+        422: {"description": "Информация о расписании обработана, но не может быть сохранена", "schema": sh.CreateScheduleError},
         500: {"description": "Server-side error (Ошибка на стороне сервера)"}
     },
     parameters=[{
@@ -28,8 +29,8 @@ from telegram.create_bot import bot
         'description': 'Bearer-токен для аутентификации'
     }]
 )
-@request_schema(sh.AddUniversity)
-async def add_university(request: web.Request) -> web.Response:
+@request_schema(sh.AddSchedule)
+async def add(request: web.Request) -> web.Response:
     try:
         email = await core.check_authorization(request)
         if type(email) != str:
@@ -37,23 +38,13 @@ async def add_university(request: web.Request) -> web.Response:
         
         request_data = await request.json()
         try:
-            university = str(request_data.get('university'))
+            content = str(request_data.get('content'))
         except Exception as e:
-            return web.json_response({"name": "university", "error": "object is not passed or has an invalid type"}, status=400)
-        try:
-            direction = str(request_data.get('direction'))
-        except Exception as e:
-            return web.json_response({"name": "direction", "error": "object is not passed or has an invalid type"}, status=400)
-        try:
-            scores = dict(request_data.get('scores'))
-            scores["min"], scores["avg"], scores["bud"]
-        except Exception as e:
-            print(e)
-            return web.json_response({"name": "scores", "error": "object is not passed or has an invalid type"}, status=400)
+            return web.json_response({"name": "content", "error": "object is not passed or has an invalid type"}, status=400)
         
-        res = await func.add_university(email, university, direction, scores)
-        if not res:
-            return web.json_response({"error": "The maximum limit of 5 entries has been exceeded."}, status=409)
+        res = await func.add_info(email, content)
+        if not res["status"]:
+            return web.json_response({"error": res["text"]}, status=200)
         return web.Response(status=204)
     except Exception as e:
         logger.error("profile error: ", e)
@@ -61,11 +52,11 @@ async def add_university(request: web.Request) -> web.Response:
     
 
 @docs(
-    tags=["University"],
-    summary="Получение списка направлений",
-    description="Возвращает список направлений выбранных пользователем. Для доступа требуется Bearer-токен в заголовке Authorization",
+    tags=["Shedule"],
+    summary="Получение расписания",
+    description="Возвращает расписание для пользователя на текущую и на следующую неделю, если такое есть. Для доступа требуется Bearer-токен в заголовке Authorization",
     responses={
-        200: {"description": "Списокв направлений", "schema": sh.GetUniversity(many=True)},
+        200: {"description": "Списокв направлений", "schema": sh.GetSchedule(many=True)},
         400: {"description": "Отсутствует один из параметров", "schema": sh.Error400Schema},
         401: {"description": "Авторизация не выполнена"},
         500: {"description": "Server-side error (Ошибка на стороне сервера)"}
@@ -78,13 +69,13 @@ async def add_university(request: web.Request) -> web.Response:
         'description': 'Bearer-токен для аутентификации'
     }]
 )
-async def get_university(request: web.Request) -> web.Response:
+async def get(request: web.Request) -> web.Response:
     try:
         email = await core.check_authorization(request)
         if type(email) != str:
             return email
         
-        res = list(await func.get_university(email))
+        res = list(await func.get_info(email))
         return web.json_response(res, status=200)
     except Exception as e:
         logger.error("profile error: ", e)

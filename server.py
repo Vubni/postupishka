@@ -8,7 +8,7 @@ import aiohttp_cors
 from config import logger
 import asyncio
 
-from api import (profile, auth, telegram, specialization, university)
+from api import (profile, auth, telegram, specialization, university, schedule, psychologist)
 
 async def ip_filter_middleware(app, handler):
     async def middleware(request):
@@ -74,6 +74,9 @@ if __name__ == "__main__":
         web.patch(prefix + 'profile', profile.profile_patch),
         web.delete(prefix + 'profile', profile.profile_delete),
         
+        web.post(prefix + 'psychologist', psychologist.question),
+        web.get(prefix + 'psychologist', psychologist.get),
+        
         web.post(prefix + 'university/add', university.add_university),
         web.get(prefix + 'university', university.get_university),
         # web.delete(prefix + 'university', university.del_university),
@@ -82,6 +85,9 @@ if __name__ == "__main__":
         # web.get(prefix + 'telegram', None),
         # web.delete(prefix + 'telegram', None),
         web.get(prefix + 'telegram/url', telegram.get_tg_url),
+        
+        web.post(prefix + 'schedule', schedule.add),
+        web.get(prefix + 'schedule', schedule.get),
         
         web.get(prefix + 'specialization/question', specialization.question),
         web.post(prefix + 'specialization/answer', specialization.answer),

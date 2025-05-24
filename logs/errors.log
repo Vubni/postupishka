@@ -1,0 +1,43 @@
+2025-05-18 18:20:44 - ERROR - root - Ошибка выполнения запроса: DataError: invalid input for query argument $1: datetime.date(2025, 5, 5) ('datetime.date' object cannot be interpreted as an integer)
+SQL: DELETE FROM schedule WHERE week=$1
+2025-05-18 18:49:26 - ERROR - root - Ошибка выполнения запроса: PostgresSyntaxError: syntax error at or near ")"
+SQL: UPDATE schedule SET schedule = '[{"name": "Математика", "time_start": "15:30", "time_stop": "17:30", "description": "Самостоятельное изучение"}, {"name": "Русский язык", "time_start": "18:00", "time_stop": "19:30", "description": "Изучение русского языка"}]'::jsonb WHERE email = 'eimanaev@gmail.com' AND week = 12 AND day = 1)
+2025-05-18 18:49:26 - ERROR - root - Ошибка выполнения запроса: PostgresSyntaxError: syntax error at or near ")"
+SQL: 
+UPDATE schedule SET schedule = '[{"name": "Плавание", "time_start": "14:00", "time_stop": "16:00", "description": "Тренировка"}, {"name": "Математика", "time_start": "16:30", "time_stop": "17:30", "description": "Самостоятельное изучение"}, {"name": "Русский язык", "time_start": "18:00", "time_stop": "19:00", "description": "Изучение русского языка"}]'::jsonb WHERE email = 'eimanaev@gmail.com' AND week = 12 AND day = 2)
+2025-05-18 18:49:26 - ERROR - root - Ошибка выполнения запроса: PostgresSyntaxError: syntax error at or near ")"
+SQL: 
+UPDATE schedule SET schedule = '[{"name": "Математика", "time_start": "15:30", "time_stop": "17:30", "description": "Самостоятельное изучение"}, {"name": "Русский язык", "time_start": "18:00", "time_stop": "19:30", "description": "Изучение русского языка"}]'::jsonb WHERE email = 'eimanaev@gmail.com' AND week = 12 AND day = 3)
+2025-05-18 18:49:26 - ERROR - root - Ошибка выполнения запроса: PostgresSyntaxError: syntax error at or near ")"
+SQL: 
+UPDATE schedule SET schedule = '[{"name": "Математика", "time_start": "15:30", "time_stop": "17:30", "description": "Самостоятельное изучение"}, {"name": "Русский язык", "time_start": "17:45", "time_stop": "18:45", "description": "Изучение русского языка"}, {"name": "Плавание", "time_start": "19:00", "time_stop": "20:00", "description": "Тренировка"}]'::jsonb WHERE email = 'eimanaev@gmail.com' AND week = 12 AND day = 4)
+2025-05-18 18:49:27 - ERROR - root - Ошибка выполнения запроса: PostgresSyntaxError: syntax error at or near ")"
+SQL: 
+UPDATE schedule SET schedule = '[{"name": "Математика", "time_start": "15:30", "time_stop": "17:30", "description": "Самостоятельное изучение"}, {"name": "Русский язык", "time_start": "18:00", "time_stop": "19:00", "description": "Изучение русского языка"}]'::jsonb WHERE email = 'eimanaev@gmail.com' AND week = 12 AND day = 5)
+2025-05-18 18:49:27 - ERROR - root - Ошибка выполнения запроса: PostgresSyntaxError: syntax error at or near ")"
+SQL: 
+UPDATE schedule SET schedule = '[{"name": "Математика", "time_start": "15:30", "time_stop": "17:30", "description": "Самостоятельное изучение"}]'::jsonb WHERE email = 'eimanaev@gmail.com' AND week = 12 AND day = 6)
+2025-05-18 18:49:27 - ERROR - root - Ошибка выполнения запроса: PostgresSyntaxError: syntax error at or near ")"
+SQL: 
+UPDATE schedule SET schedule = '[{"name": "Математика", "time_start": "11:00", "time_stop": "13:00", "description": "Самостоятельное изучение"}]'::jsonb WHERE email = 'eimanaev@gmail.com' AND week = 12 AND day = 7)
+2025-05-18 18:49:27 - ERROR - root - Ошибка выполнения запроса: PostgresSyntaxError: syntax error at or near ")"
+SQL: 
+UPDATE schedule SET schedule = '[{"name": "Математика", "time_start": "15:30", "time_stop": "17:30", "description": "Самостоятельное изучение"}, {"name": "Русский язык", "time_start": "18:00", "time_stop": "19:30", "description": "Изучение русского языка"}]'::jsonb WHERE email = 'eimanaev@gmail.com' AND week = 19 AND day = 1)
+2025-05-18 18:49:27 - ERROR - root - Ошибка выполнения запроса: PostgresSyntaxError: syntax error at or near ")"
+SQL: 
+UPDATE schedule SET schedule = '[{"name": "Плавание", "time_start": "14:00", "time_stop": "16:00", "description": "Тренировка"}, {"name": "Математика", "time_start": "16:30", "time_stop": "17:30", "description": "Самостоятельное изучение"}, {"name": "Русский язык", "time_start": "18:00", "time_stop": "19:00", "description": "Изучение русского языка"}]'::jsonb WHERE email = 'eimanaev@gmail.com' AND week = 19 AND day = 2)
+2025-05-18 18:49:27 - ERROR - root - Ошибка выполнения запроса: PostgresSyntaxError: syntax error at or near ")"
+SQL: 
+UPDATE schedule SET schedule = '[{"name": "Математика", "time_start": "15:30", "time_stop": "17:30", "description": "Самостоятельное изучение"}, {"name": "Русский язык", "time_start": "18:00", "time_stop": "19:30", "description": "Изучение русского языка"}]'::jsonb WHERE email = 'eimanaev@gmail.com' AND week = 19 AND day = 3)
+2025-05-18 18:49:27 - ERROR - root - Ошибка выполнения запроса: PostgresSyntaxError: syntax error at or near ")"
+SQL: 
+UPDATE schedule SET schedule = '[{"name": "Математика", "time_start": "15:30", "time_stop": "17:30", "description": "Самостоятельное изучение"}, {"name": "Русский язык", "time_start": "17:45", "time_stop": "18:45", "description": "Изучение русского языка"}, {"name": "Плавание", "time_start": "19:00", "time_stop": "20:00", "description": "Тренировка"}]'::jsonb WHERE email = 'eimanaev@gmail.com' AND week = 19 AND day = 4)
+2025-05-18 18:49:27 - ERROR - root - Ошибка выполнения запроса: PostgresSyntaxError: syntax error at or near ")"
+SQL: 
+UPDATE schedule SET schedule = '[{"name": "Математика", "time_start": "15:30", "time_stop": "17:30", "description": "Самостоятельное изучение"}, {"name": "Русский язык", "time_start": "18:00", "time_stop": "19:00", "description": "Изучение русского языка"}]'::jsonb WHERE email = 'eimanaev@gmail.com' AND week = 19 AND day = 5)
+2025-05-18 18:49:27 - ERROR - root - Ошибка выполнения запроса: PostgresSyntaxError: syntax error at or near ")"
+SQL: 
+UPDATE schedule SET schedule = '[{"name": "Математика", "time_start": "15:30", "time_stop": "17:30", "description": "Самостоятельное изучение"}]'::jsonb WHERE email = 'eimanaev@gmail.com' AND week = 19 AND day = 6)
+2025-05-18 18:49:27 - ERROR - root - Ошибка выполнения запроса: PostgresSyntaxError: syntax error at or near ")"
+SQL: 
+UPDATE schedule SET schedule = '[{"name": "Математика", "time_start": "11:00", "time_stop": "13:00", "description": "Самостоятельное изучение"}]'::jsonb WHERE email = 'eimanaev@gmail.com' AND week = 19 AND day = 7)

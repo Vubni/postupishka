@@ -31,11 +31,13 @@ class Answer_ai:
         self.generation_time = generation_time
 
 class Ai:
-    def __init__(self, system_prompt=None, model="gpt-4.1"):
+    def __init__(self, system_prompt=None, model="gpt-4.1", max_questions=None):
         self.model = model
         self.messages = []
         self.system_prompt = system_prompt
         self.price = 0
+        self.max_questions = max_questions  # None — без ограничений
+
         if system_prompt:
             self.messages.append({"role": "system", "content": system_prompt})
 
@@ -47,15 +49,28 @@ class Ai:
             self.messages.insert(0, {"role": "system", "content": system_prompt})
 
     def add_question(self, content: str):
+        system_message = self.messages[0] if self.messages and self.messages[0]["role"] == "system" else None
+        
         self.messages.append({"role": "user", "content": content})
-    
+        self._enforce_max_questions(system_message)
+
+    def _enforce_max_questions(self, system_message):
+        user_messages = [msg for msg in self.messages if msg["role"] == "user"]
+        
+        if self.max_questions is not None and len(user_messages) > self.max_questions:
+            first_user_index = next(i for i, msg in enumerate(self.messages) if msg["role"] == "user")
+            
+            del self.messages[first_user_index:first_user_index + 2]
+            self._enforce_max_questions(system_message)
+
     async def question(self, content=None, memory=True):
         if content:
             user_message = {"role": "user", "content": content}
-        
-            # Подготовка сообщений для запроса
+
             if memory:
+                system_message = self.messages[0] if self.messages and self.messages[0]["role"] == "system" else None
                 self.messages.append(user_message)
+                self._enforce_max_questions(system_message)
                 current_messages = self.messages
             else:
                 if self.system_prompt:
@@ -67,8 +82,7 @@ class Ai:
                     current_messages = [user_message]
         else:
             current_messages = self.messages
-        
-        # Асинхронный вызов API
+
         start_time = time.time()
         try:
             response = await client.chat.completions.create(
@@ -79,21 +93,20 @@ class Ai:
         except Exception as e:
             raise RuntimeError(f"API request failed: {str(e)}")
         end_time = time.time()
-        
-        # Обработка ответа
+
         answer_content = response.choices[0].message.content
         usage = response.usage
         cost = calculate_cost(usage.prompt_tokens, usage.completion_tokens)
         generation_time = end_time - start_time
-        
-        # Формирование истории сообщений
+
         if memory:
             self.messages.append({"role": "assistant", "content": answer_content})
+            self._enforce_max_questions(self.messages[0] if self.messages and self.messages[0]["role"] == "system" else None)
             answer_messages = self.messages.copy()
         else:
             answer_messages = current_messages.copy()
             answer_messages.append({"role": "assistant", "content": answer_content})
-        
+
         self.price += cost
         return Answer_ai(
             messages=answer_messages,
@@ -101,7 +114,7 @@ class Ai:
             price=cost,
             generation_time=generation_time
         )
-        
+
     def clear_messages(self):
         self.messages = []
         return True

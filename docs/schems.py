@@ -46,7 +46,8 @@ class QuestionSchema(Schema):
     question = fields.Str(description="Вопрос от ИИ для пользователя")
     counts_remaind = fields.Int(description="Количество оставшихся вопросов")
     
-    
+class QuestionSchema_Psycho(Schema):
+    question = fields.Str(description="Вопрос к психологу")
 
 class AnswerAddSchema(Schema):
     answer = fields.Str(required=True, description="Ответ на последний вопрос")
@@ -70,3 +71,38 @@ class AddUniversity(Schema):
     university = fields.Str(required=True, description="Название университета")
     direction = fields.Str(required=False, description="Направление")
     scores = fields.Nested(ScoreSchema, required=True, description="Примерные баллы для поступления")
+    
+class UniversityInfoSchema(Schema):
+    university = fields.Str(description="Название университета")
+    direction = fields.Str(description="Направление подготовки")
+    scores = fields.Nested(ScoreSchema, description="Баллы для поступления")
+
+class GetUniversity(Schema):
+    data = fields.List(fields.Nested(UniversityInfoSchema))
+    
+class AddSchedule(Schema):
+    content = fields.Str(required=True, description="Информация от человека про его расписание")
+    
+class CreateScheduleError(Schema):
+    error = fields.Str(description="Причина невозможности добавления в расписание")
+    
+class DayScheduleItemSchema(Schema):
+    time_start = fields.Time(required=True, description="Время начала занятия (в формате HH:MM)")
+    time_stop = fields.Time(required=True, description="Время окончания занятия (в формате HH:MM)")
+    name = fields.Str(required=True, description="Название занятия")
+    description = fields.Str(required=True, description="Описание занятия")
+    
+class DayInfoSchema(Schema):
+    day_in_month = fields.Int(required=True, description="День месяца")
+    schedule = fields.List(fields.Nested(DayScheduleItemSchema), required=True, description="Расписание на день")
+    
+class WeekScheduleSchema(Schema):
+    week = fields.Str(required=True, description="Номер недели или дата начала недели")
+    info = fields.List(fields.Nested(DayInfoSchema), required=True, description="Информация о днях недели")
+    
+class GetSchedule(Schema):
+    data = fields.List(fields.Nested(WeekScheduleSchema), required=True, description="Список расписаний по неделям")
+    
+class AiDialog(Schema):
+    role = fields.Str(required=True, description="Собеседник (user - пользователь, assistant - искусственный интеллект)")
+    content = fields.Str(required=True, description="Содержимое сообщения")

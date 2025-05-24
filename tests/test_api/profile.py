@@ -88,6 +88,25 @@ def test_tg(token):
     response = requests.get(URL + "/telegram/url", headers=headers)
     assert response.status_code == 200, f"'/telegram/url' Выполнено 0/1 тестов, ожидается статус 200, получен {response.status_code}"
     
+def test_edit(token):
+    headers = {
+        "Authorization": "Bearer " + token
+    }
+    data = {"subjects": [{"subject": "Русский язык", "current_score": 20, "desired_score": 90},
+                         {"subject": "Математика", "current_score": 10, "desired_score": 100}
+                         ]}
+    response = requests.patch(URL + "/profile", json=data, headers=headers)
+    assert response.status_code == 204, f"'/profile' Выполнено 0/1 тестов, ожидается статус 200, получен {response.status_code}"
+    
+    headers = {
+        "Authorization": "Bearer " + token
+    }
+    response = requests.get(URL + "/profile", headers=headers)
+    assert response.status_code == 200, f"'/profile' Выполнено 0/4 тестов, ожидается статус 200, получен {response.status_code}"
+    res = response.json()
+    assert len(res["subjects"]) == 2, f"'/profile' Выполнено 1/4 тестов, ожидается 2 объекта в 'subjects', получен " + res["subjects"]
+    assert res["subjects"][0]["subject"] == "Русский язык", f"'/profile' Выполнено 2/4 тестов, ожидается статус 200, получен " + res["subjects"][0]["subject"]
+    assert res["subjects"][1]["subject"] == "Математика", f"'/profile' Выполнено 3/4 тестов, ожидается статус 200, получен" + res["subjects"][1]["subject"]
     
 def delete_profile(token):
     headers = {
