@@ -7,7 +7,7 @@ import googlesearch as gs
 import requests
 from bs4 import BeautifulSoup
 import json, asyncio
-from database import functions as func_db
+from functions import auth as func_db
 from datetime import datetime
 
 def current_study_year():

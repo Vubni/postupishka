@@ -8,7 +8,7 @@ from aiogram import types
 from telegram import botstates
 from telegram.create_bot import bot
 from ai.yandex_ai import Psychologist, Analyzer
-from database import functions_telegram as func_db
+from functions import auth as func_db
 from telegram.keyboards import main as kb
 
 psycho_ai = {}

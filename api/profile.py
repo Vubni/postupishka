@@ -6,7 +6,7 @@ from aiohttp_apispec import (
 )
 from config import logger
 from docs import schems as sh
-from database import functions as func_db
+from functions import auth as func_db
 import core
 from telegram.create_bot import bot
 
