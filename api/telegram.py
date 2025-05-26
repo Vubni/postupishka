@@ -30,7 +30,7 @@ from telegram.create_bot import bot
 async def get_tg_url(request: web.Request) -> web.Response:
     try:
         email = await core.check_authorization(request)
-        if type(email) != str:
+        if not isinstance(email, str):
             return email
         
         url = await func_db.get_tg_url(email)

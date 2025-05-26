@@ -3,7 +3,7 @@ from ai.prompts import (PROMPT_PSYCHOLOGIST)
 
 ai_psychologist = {}
 
-async def create_ai(email:str):
+def create_ai(email:str):
     ai_psychologist[email] = Ai(PROMPT_PSYCHOLOGIST, model="gpt-4.1-mini", max_questions=10)
 
 async def question(email:str, question:str):

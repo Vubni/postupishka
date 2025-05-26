@@ -8,6 +8,7 @@ from config import logger
 from docs import schems as sh
 from functions import specialization as func
 import core
+from api import validate
 
 @docs(
     tags=["Specialization"],
@@ -30,7 +31,7 @@ import core
 async def question(request: web.Request) -> web.Response:
     try:
         email = await core.check_authorization(request)
-        if type(email) != str:
+        if not isinstance(email, str):
             return email
         
         result = await func.generate_question(email)
@@ -59,17 +60,14 @@ async def question(request: web.Request) -> web.Response:
     }]
 )
 @request_schema(sh.AnswerAddSchema)
-async def answer(request: web.Request) -> web.Response:
+@validate.validate(validate.Spec_answer)
+async def answer(request: web.Request, parsed : validate.Spec_answer) -> web.Response:
     try:
         email = await core.check_authorization(request)
-        if type(email) != str:
+        if not isinstance(email, str):
             return email
-        
-        try:
-            request_data = await request.json()
-            answer = request_data.get('answer')
-        except Exception as e:
-            return web.json_response({"error": str(e)}, status=400)
+
+        answer = parsed.answer
         
         res = func.add_answer(email, answer)
         if not res:
@@ -100,7 +98,7 @@ async def answer(request: web.Request) -> web.Response:
 async def get_result(request: web.Request) -> web.Response:
     try:
         email = await core.check_authorization(request)
-        if type(email) != str:
+        if not isinstance(email, str):
             return email
         
         result = await func.get_result_handler(email)

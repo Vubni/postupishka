@@ -23,14 +23,14 @@ async def register_user(email : str, password : str, first_name: str, class_numb
             return web.Response(status=409, text="The email has already been registered")
         
         await db.execute(
-            "INSERT INTO users (first_name, email, password, class) VALUES ($1, $2, $3, $4)",
+            "INSERT INTO users (first_name, email, password, class_number) VALUES ($1, $2, $3, $4)",
             (first_name, email, password, class_number)
         )
         await db.execute("DELETE FROM tokens WHERE date < CURRENT_DATE - INTERVAL '1 month'")
         code = generate_unique_code()
         await db.execute("INSERT INTO tokens (email, token) VALUES ($1, $2)", (email, code,))
         await db.execute("INSERT INTO subjects (email, subject) VALUES ($1, $2)", (email, "Русский язык",))
-    return code
+    return web.json_response({"token": code}, status=201)
             
 async def auth(identifier:str, password:str) -> str:
     async with Database() as db:
@@ -41,7 +41,7 @@ async def auth(identifier:str, password:str) -> str:
         await db.execute("DELETE FROM tokens WHERE date < CURRENT_DATE - INTERVAL '1 month'")
         code = generate_unique_code()
         await db.execute("INSERT INTO tokens (email, token) VALUES ($1, $2)", (email, code,))
-    return code
+    return web.json_response({"token": code}, status=200)
 
 
 async def profile_get(email):

@@ -2,7 +2,7 @@ from marshmallow import Schema, fields
 
 class UserRegisterSchema(Schema):
     email = fields.Str(required=True, description="email пользователя. До 256 символов")
-    firstName = fields.Str(required=True)
+    first_name = fields.Str(required=True)
     _class = fields.Int(required=True)
     password = fields.Str(required=True)
 
@@ -28,7 +28,7 @@ class UserProfileSchema(Schema):
     
 class UserEditSchema(Schema):
     email = fields.Str(required=False, description="email пользователя. До 256 символов")
-    firstName = fields.Str(required=False)
+    first_name = fields.Str(required=False)
     class_number = fields.Int(required=False)
     password_old = fields.Str(required=False)
     password_new = fields.Str(required=False)

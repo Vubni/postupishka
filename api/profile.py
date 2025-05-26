@@ -9,6 +9,7 @@ from docs import schems as sh
 from functions import auth as func_db
 import core
 from telegram.create_bot import bot
+from api import validate
 
 @docs(
     tags=["Profile"],
@@ -30,13 +31,13 @@ from telegram.create_bot import bot
 async def profile_get(request: web.Request) -> web.Response:
     try:
         email = await core.check_authorization(request)
-        if type(email) != str:
+        if not isinstance(email, str):
             return email
         
         res = await func_db.profile_get(email)
         result = {"email": res["email"],
             "first_name": res["first_name"],
-            "class": res["class"]}
+            "class_number": res["class_number"]}
         if res["telegram_id"]:
             result["username"] = (await bot.get_chat(res["telegram_id"])).username
         result["subjects"] = await func_db.get_subjects(email)
@@ -67,7 +68,7 @@ async def profile_get(request: web.Request) -> web.Response:
 async def profile_delete(request: web.Request) -> web.Response:
     try:
         email = await core.check_authorization(request)
-        if type(email) != str:
+        if not isinstance(email, str):
             return email
         
         return await func_db.profile_delete(email)
@@ -95,39 +96,19 @@ async def profile_delete(request: web.Request) -> web.Response:
     }]
 )
 @request_schema(sh.UserEditSchema)
-async def profile_patch(request: web.Request) -> web.Response:
+@validate.validate(validate.Profile_patch)
+async def profile_patch(request: web.Request, parsed : validate.Profile_patch) -> web.Response:
     try:
         email = await core.check_authorization(request)
-        if type(email) != str:
+        if not isinstance(email, str):
             return email
         
-        try:
-            request_data = await request.json()
-            email_new = request_data.get('email', None)
-            first_name = request_data.get('firstName', None)
-            password_old = request_data.get('password_old', None)
-            password_new = request_data.get('password_new', None)
-            class_number = request_data.get('class', None)
-            if class_number:
-                class_number = int(class_number)
-            subjects = request_data.get('subjects', None)
-        except Exception as e:
-            return web.json_response({"error": str(e)}, status=400)
-        
-        if (password_old and not password_new) or (not password_old and password_new):
-            return web.json_response({"name": "password", "error": "only one of the password_new or password_old fields cannot be specified"}, status=400)
-        if not class_number and not email_new and not first_name and (not password_old or not password_new) and not subjects:
-            return web.json_response({"error": "no parametrs"}, status=400)
-        
-        if email_new and (len(email_new) > 256):
-            return web.json_response({"error": "email must not exceed 256 characters in length."}, status=400)
-        if email_new and (not core.is_valid_email(email_new)):
-            return web.json_response({"error": "Expected a valid email address."}, status=422)
-        if class_number and (class_number < 9 or class_number > 11):
-            return web.json_response({"error": "The class number cannot be outside the range of 9-11."}, status=400)
-        if type(subjects) != list:
-            return web.json_response({"name": "subjects", "error": "The list type is expected"}, status=400)
-            
+        email_new = parsed.email
+        first_name = parsed.first_name
+        password_old = parsed.password_old
+        password_new = parsed.password_new
+        class_number = parsed.class_number
+        subjects = parsed.subjects
         
         return await func_db.profile_edit(email, email_new, first_name, password_old, password_new, class_number, subjects)
     except Exception as e:

@@ -8,7 +8,7 @@ from config import logger
 from docs import schems as sh
 from functions import schedule as func
 import core
-from telegram.create_bot import bot
+from api import validate
 
 @docs(
     tags=["Shedule"],
@@ -30,17 +30,14 @@ from telegram.create_bot import bot
     }]
 )
 @request_schema(sh.AddSchedule)
-async def add(request: web.Request) -> web.Response:
+@validate.validate(validate.Schedule_add)
+async def add(request: web.Request, parsed : validate.Schedule_add) -> web.Response:
     try:
         email = await core.check_authorization(request)
-        if type(email) != str:
+        if not isinstance(email, str):
             return email
         
-        request_data = await request.json()
-        try:
-            content = str(request_data.get('content'))
-        except Exception as e:
-            return web.json_response({"name": "content", "error": "object is not passed or has an invalid type"}, status=400)
+        content = parsed.content
         
         res = await func.add_info(email, content)
         if not res["status"]:
@@ -72,7 +69,7 @@ async def add(request: web.Request) -> web.Response:
 async def get(request: web.Request) -> web.Response:
     try:
         email = await core.check_authorization(request)
-        if type(email) != str:
+        if not isinstance(email, str):
             return email
         
         res = list(await func.get_info(email))

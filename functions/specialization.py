@@ -50,7 +50,7 @@ async def create_ai(email:str):
     subjects = await func_db.get_subjects(email)
     profile = await func_db.profile_get(email)
     content = f"Текущий учебный год: {current_study_year()}\n"
-    content += "Класс абитуриента: " + str(profile["class"]) + "\nпредметы, которые сдаёт:"
+    content += "Класс абитуриента: " + str(profile["class_number"]) + "\nпредметы, которые сдаёт:"
     for subject in subjects:
         content+= "\n" + subject["subject"] + " | Баллы сейчас: " + str(subject["current_score"]) + " | Рассчитывает на: " + str(subject["desired_score"])
     list_ai[email].add_question(content)

@@ -6,7 +6,7 @@ from config import URL
 if __name__ == "__main__":
     
     import profile
-    # profile.test_create_user()
+    profile.test_create_user()
     token = profile.test_auth()
     profile.test_profile(token)
     profile.test_edit(token)
@@ -26,4 +26,4 @@ if __name__ == "__main__":
     #     print(res)
     #     time.sleep(1)
     
-    # profile.delete_profile(token)
+    profile.delete_profile(token)

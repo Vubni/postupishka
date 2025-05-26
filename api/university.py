@@ -8,7 +8,7 @@ from config import logger
 from docs import schems as sh
 from functions import university as func
 import core
-from telegram.create_bot import bot
+from api import validate
 
 @docs(
     tags=["University"],
@@ -29,27 +29,16 @@ from telegram.create_bot import bot
     }]
 )
 @request_schema(sh.AddUniversity)
-async def add_university(request: web.Request) -> web.Response:
+@validate.validate(validate.Univer_add)
+async def add_university(request: web.Request, parsed : validate.Univer_add) -> web.Response:
     try:
         email = await core.check_authorization(request)
-        if type(email) != str:
+        if not isinstance(email, str):
             return email
         
-        request_data = await request.json()
-        try:
-            university = str(request_data.get('university'))
-        except Exception as e:
-            return web.json_response({"name": "university", "error": "object is not passed or has an invalid type"}, status=400)
-        try:
-            direction = str(request_data.get('direction'))
-        except Exception as e:
-            return web.json_response({"name": "direction", "error": "object is not passed or has an invalid type"}, status=400)
-        try:
-            scores = dict(request_data.get('scores'))
-            scores["min"], scores["avg"], scores["bud"]
-        except Exception as e:
-            print(e)
-            return web.json_response({"name": "scores", "error": "object is not passed or has an invalid type"}, status=400)
+        university = parsed.university
+        direction = parsed.direction
+        scores = parsed.scores
         
         res = await func.add_university(email, university, direction, scores)
         if not res:
@@ -81,7 +70,7 @@ async def add_university(request: web.Request) -> web.Response:
 async def get_university(request: web.Request) -> web.Response:
     try:
         email = await core.check_authorization(request)
-        if type(email) != str:
+        if not isinstance(email, str):
             return email
         
         res = list(await func.get_university(email))

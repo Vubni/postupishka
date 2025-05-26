@@ -8,6 +8,7 @@ from config import logger
 from docs import schems as sh
 from functions import psychologist as func_db
 import core
+from api import validate
 
 @docs(
     tags=["Psychologist"],
@@ -28,20 +29,14 @@ import core
     }]
 )
 @request_schema(sh.QuestionSchema_Psycho)
-async def question(request: web.Request) -> web.Response:
+@validate.validate(validate.Psych_question)
+async def question(request: web.Request, parsed : validate.Psych_question) -> web.Response:
     try:
         email = await core.check_authorization(request)
-        if type(email) != str:
+        if not isinstance(email, str):
             return email
         
-        try:
-            request_data = await request.json()
-            question = request_data.get('question', None)
-        except Exception as e:
-            return web.json_response({"error": str(e)}, status=400)
-        
-        if type(question) is not str:
-            return web.json_response({"name": "question", "error": "Type is not string"}, status=400)
+        question = parsed.question
         
         result = await func_db.question(email, question)
         return web.json_response({"answer": result}, status=200)
@@ -70,7 +65,7 @@ async def question(request: web.Request) -> web.Response:
 async def get(request: web.Request) -> web.Response:
     try:
         email = await core.check_authorization(request)
-        if type(email) != str:
+        if not isinstance(email, str):
             return email
         
         result = await func_db.dialog(email)

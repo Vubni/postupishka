@@ -41,3 +41,128 @@ UPDATE schedule SET schedule = '[{"name": "Математика", "time_start": 
 2025-05-18 18:49:27 - ERROR - root - Ошибка выполнения запроса: PostgresSyntaxError: syntax error at or near ")"
 SQL: 
 UPDATE schedule SET schedule = '[{"name": "Математика", "time_start": "11:00", "time_stop": "13:00", "description": "Самостоятельное изучение"}]'::jsonb WHERE email = 'eimanaev@gmail.com' AND week = 19 AND day = 7)
+2025-05-26 19:20:22 - ERROR - aiohttp.server - Error handling request from ::1
+Traceback (most recent call last):
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_protocol.py", line 480, in _handle_request
+    resp = await request_handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_app.py", line 569, in _handle
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_middlewares.py", line 117, in impl
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp_apispec\middlewares.py", line 45, in validation_middleware
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\server.py", line 30, in middleware
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\api\validate.py", line 42, in wrapper
+    return await handler(request, parsed)
+                 ~~~~~~~^^^^^^^^^^^^^^^^^
+TypeError: auth() takes 1 positional argument but 2 were given
+2025-05-26 19:20:47 - ERROR - aiohttp.server - Error handling request from ::1
+Traceback (most recent call last):
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_protocol.py", line 480, in _handle_request
+    resp = await request_handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_app.py", line 569, in _handle
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_middlewares.py", line 117, in impl
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp_apispec\middlewares.py", line 45, in validation_middleware
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\server.py", line 30, in middleware
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\api\validate.py", line 42, in wrapper
+    return await handler(request, parsed)
+                 ~~~~~~~^^^^^^^^^^^^^^^^^
+TypeError: auth() takes 1 positional argument but 2 were given
+2025-05-26 19:21:11 - ERROR - aiohttp.server - Error handling request from ::1
+Traceback (most recent call last):
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_protocol.py", line 480, in _handle_request
+    resp = await request_handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_app.py", line 569, in _handle
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_middlewares.py", line 117, in impl
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp_apispec\middlewares.py", line 45, in validation_middleware
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\server.py", line 30, in middleware
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\api\validate.py", line 42, in wrapper
+    return await handler(request, parsed)
+                 ~~~~~~~^^^^^^^^^^^^^^^^^
+TypeError: auth() takes 1 positional argument but 2 were given
+2025-05-26 19:21:23 - ERROR - aiohttp.server - Error handling request from ::1
+Traceback (most recent call last):
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_protocol.py", line 480, in _handle_request
+    resp = await request_handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_app.py", line 569, in _handle
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_middlewares.py", line 117, in impl
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp_apispec\middlewares.py", line 45, in validation_middleware
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\server.py", line 30, in middleware
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\api\validate.py", line 42, in wrapper
+    return await handler(request, parsed)
+                 ~~~~~~~^^^^^^^^^^^^^^^^^
+TypeError: auth() takes 1 positional argument but 2 were given
+2025-05-26 19:22:46 - ERROR - aiohttp.server - Error handling request from ::1
+Traceback (most recent call last):
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_protocol.py", line 480, in _handle_request
+    resp = await request_handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_app.py", line 569, in _handle
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_middlewares.py", line 117, in impl
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp_apispec\middlewares.py", line 45, in validation_middleware
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\server.py", line 30, in middleware
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\api\validate.py", line 42, in wrapper
+    return await handler(request, parsed)
+                 ~~~~~~~^^^^^^^^^^^^^^^^^
+TypeError: auth() takes 1 positional argument but 2 were given
+2025-05-26 19:37:58 - ERROR - root - Ошибка выполнения запроса: UndefinedColumnError: column "class" of relation "users" does not exist
+SQL: INSERT INTO users (first_name, email, password, class) VALUES ($1, $2, $3, $4)
+2025-05-26 19:37:59 - ERROR - root - Ошибка выполнения запроса: InFailedSQLTransactionError: current transaction is aborted, commands ignored until end of transaction block
+SQL: DELETE FROM tokens WHERE date < CURRENT_DATE - INTERVAL '1 month'
+2025-05-26 19:37:59 - ERROR - root - Ошибка выполнения запроса: InFailedSQLTransactionError: current transaction is aborted, commands ignored until end of transaction block
+SQL: INSERT INTO tokens (email, token) VALUES ($1, $2)
+2025-05-26 19:37:59 - ERROR - root - Ошибка выполнения запроса: InFailedSQLTransactionError: current transaction is aborted, commands ignored until end of transaction block
+SQL: INSERT INTO subjects (email, subject) VALUES ($1, $2)
+2025-05-26 19:37:59 - ERROR - aiohttp.server - Web-handler should return a response instance, got '7aBbGVQIrGsButdFLpaVOX6Dkp1S38Dh'
+Traceback (most recent call last):
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_protocol.py", line 656, in finish_response
+    prepare_meth = resp.prepare
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'prepare'
+2025-05-26 19:38:51 - ERROR - aiohttp.server - Web-handler should return a response instance, got 'B_6jvFDqU_VjZOC_9omMTLxUTNdg_sb7'
+Traceback (most recent call last):
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_protocol.py", line 656, in finish_response
+    prepare_meth = resp.prepare
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'prepare'
