@@ -3,7 +3,7 @@ from marshmallow import Schema, fields
 class UserRegisterSchema(Schema):
     email = fields.Str(required=True, description="email пользователя. До 256 символов")
     first_name = fields.Str(required=True)
-    _class = fields.Int(required=True)
+    class_number = fields.Int(required=True)
     password = fields.Str(required=True)
 
 class TokenResponseSchema(Schema):
@@ -24,6 +24,7 @@ class UserProfileSchema(Schema):
     first_name = fields.Str()
     class_number = fields.Int()
     subjects = fields.List(fields.Nested(SubjectSchema))
+    verified = fields.Bool(description="Верифицирован ли аккаунт")
     
     
 class UserEditSchema(Schema):
@@ -35,9 +36,18 @@ class UserEditSchema(Schema):
     subjects = fields.List(fields.Nested(SubjectSchema), required=False)
     
     
+class ErrorDetailSchema(Schema):
+    """Схема для детального описания одной ошибки."""
+    name = fields.Str(description="Имя параметра, вызвавшего ошибку")
+    type = fields.Str(description="Тип ошибки (например, missing)")
+    message = fields.Str(description="Сообщение об ошибке")
+    value = fields.Raw(description="Значение параметра, если оно было передано", allow_none=True)
+
 class Error400Schema(Schema):
-    name = fields.Str(description="Имя параметра, не соответствующего требованиям")
-    error = fields.Str(description="Не соблюденное требование")
+    """Основная схема ответа с ошибками."""
+    error = fields.Str(description="Общее сообщение об ошибке")
+    errors = fields.List(fields.Nested(ErrorDetailSchema), description="Список детальных ошибок")
+    received_params = fields.Dict(description="Параметры, которые были успешно получены")
     
 class TgUrlSchema(Schema):
     url = fields.Str()
@@ -57,13 +67,20 @@ class ScoreSchema(Schema):
     min = fields.Int(required=True, description="Минимальный балл на платку")
     avg = fields.Int(required=True, description="Средний балл поступивших")
     bud = fields.Int(required=True, description="Балл для бюджетного места")
-
-class UniversitySchema(Schema):
+    
+class University2Schema(Schema):
     university = fields.Str(required=True, description="Название университета")
     directions = fields.List(fields.Str(), required=True, description="Список направлений подготовки")
     scores = fields.Nested(ScoreSchema, required=True, description="Баллы для поступления")
     features = fields.List(fields.Str(), required=True, description="Особенности университета")
     information = fields.Bool(required=True, description="Флаг дополнительной информации")
+    
+class UniversitySchema(Schema):
+    status = fields.Str("done", description="Статус обработки")
+    result = fields.List(fields.Nested(University2Schema))
+    
+class University_load(Schema):
+    status = fields.Str("processing")
     
     
     
@@ -72,13 +89,10 @@ class AddUniversity(Schema):
     direction = fields.Str(required=False, description="Направление")
     scores = fields.Nested(ScoreSchema, required=True, description="Примерные баллы для поступления")
     
-class UniversityInfoSchema(Schema):
+class GetUniversity(Schema):
     university = fields.Str(description="Название университета")
     direction = fields.Str(description="Направление подготовки")
     scores = fields.Nested(ScoreSchema, description="Баллы для поступления")
-
-class GetUniversity(Schema):
-    data = fields.List(fields.Nested(UniversityInfoSchema))
     
 class AddSchedule(Schema):
     content = fields.Str(required=True, description="Информация от человека про его расписание")
@@ -106,3 +120,12 @@ class GetSchedule(Schema):
 class AiDialog(Schema):
     role = fields.Str(required=True, description="Собеседник (user - пользователь, assistant - искусственный интеллект)")
     content = fields.Str(required=True, description="Содержимое сообщения")
+    
+class Specialization_timer(Schema):
+    days = fields.Int(description="дни до завершения таймера")
+    hours = fields.Int(description="часы")
+    minutes = fields.Int(description="минуты")
+    
+class AlreadyBeenTaken(Schema):
+    name = fields.Str(description="Название переменной, которая занята")
+    error = fields.Str(description="Описание, что переменная занята")

@@ -12,12 +12,15 @@ PROXY_PORT = os.getenv("PROXY_PORT")
 PROXY_USER = os.getenv("PROXY_USER")
 PROXY_PASS = os.getenv("PROXY_PASS")
 
+SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
+
 DATE_BASE_CONNECT = {"host": "45.89.190.44", 
              "user": "user", 
              "password": os.getenv("DB_PASSWORD"), 
              "database": "postupishka"}
 
 bot_url = "https://t.me/postupishka_bot"
+
 
 
 

@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 import json, asyncio
 from functions import auth as func_db
 from datetime import datetime
+from database.database import Database
 
 def current_study_year():
     now = datetime.now()
@@ -26,7 +27,13 @@ unifier_ai = Ai(PROMPT_UNIFIER, model="gpt-4.1-mini")
 get_result_wait = {}
 
 async def check_browse(content:str):
-    results=gs.search(content,num_results=4)
+    try:
+        results=gs.search(content,num_results=4)
+    except:
+        try:
+            results=gs.search(content,num_results=4)
+        except:
+            return ""
     result_text = ""
     for link in results:
         try:
@@ -87,7 +94,6 @@ async def get_result(email:str):
     list_ai[email].edit_system_prompt(PROMPT_INITIAL_QUERIES)
     tasks = []
     questons = (await list_ai[email].question("Создай 3 запроса для браузера", False)).answer.split("$")
-    print(questons)
     for queston in questons:
         tasks.append(check_browse(queston))
     result = await asyncio.gather(*tasks)
@@ -96,12 +102,10 @@ async def get_result(email:str):
     
     list_ai[email].edit_system_prompt(PROMPT_SHORTLIST)
     res = await list_ai[email].question("Выдай список вузов")
-    print(res.answer)
 
     list_ai[email].edit_system_prompt(PROMPT_REFINE_QUERIES)
     tasks = []
     questons = (await list_ai[email].question("Создай до 6 запросов для браузера по вузам, которые ты получил до этого", False)).answer.split("$")
-    print(questons)
     for queston in questons:
         tasks.append(check_browse(queston))
     result = await asyncio.gather(*tasks)
@@ -112,3 +116,10 @@ async def get_result(email:str):
     res = await list_ai[email].question("Выдай список вузов")
     del list_ai[email]
     return json.loads(res.answer)
+
+async def get_time(email):
+    async with Database() as db:
+        res = await db.execute("SELECT date_time FROM specializations WHERE email=$1", (email,))
+    if not res:
+        return False
+    return res["date_time"]

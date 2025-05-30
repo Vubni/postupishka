@@ -15,7 +15,8 @@ client = AsyncOpenAI(
     http_client=httpx.AsyncClient(
         transport=transport,
         timeout=httpx.Timeout(30)
-    )
+    ),
+    base_url="https://hubai.loe.gg/v1"
 )
 
 def calculate_cost(prompt_tokens, completion_tokens):

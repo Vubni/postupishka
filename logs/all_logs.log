@@ -457,3 +457,210 @@ AttributeError: 'str' object has no attribute 'prepare'
 2025-05-26 19:48:53 - INFO - aiohttp.access - ::1 [26/May/2025:19:48:49 +0300] "GET /profile HTTP/1.1" 200 494 "-" "python-requests/2.32.3"
 2025-05-26 19:48:55 - INFO - aiohttp.access - ::1 [26/May/2025:19:48:53 +0300] "GET /telegram/url HTTP/1.1" 200 222 "-" "python-requests/2.32.3"
 2025-05-26 19:48:57 - INFO - aiohttp.access - ::1 [26/May/2025:19:48:55 +0300] "DELETE /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-28 21:36:54 - INFO - root - Запуск сервера. . .
+2025-05-29 14:25:14 - INFO - root - Запуск сервера. . .
+2025-05-29 14:25:21 - INFO - aiohttp.access - ::1 [29/May/2025:14:25:20 +0300] "POST /auth HTTP/1.1" 200 205 "-" "python-requests/2.32.3"
+2025-05-29 14:25:22 - INFO - aiohttp.access - ::1 [29/May/2025:14:25:21 +0300] "GET /profile HTTP/1.1" 200 374 "-" "python-requests/2.32.3"
+2025-05-29 14:25:31 - INFO - aiohttp.access - ::1 [29/May/2025:14:25:22 +0300] "PATCH /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 14:25:32 - INFO - aiohttp.access - ::1 [29/May/2025:14:25:31 +0300] "GET /profile HTTP/1.1" 200 373 "-" "python-requests/2.32.3"
+2025-05-29 14:25:34 - INFO - aiohttp.access - ::1 [29/May/2025:14:25:32 +0300] "PATCH /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 14:25:36 - INFO - aiohttp.access - ::1 [29/May/2025:14:25:34 +0300] "GET /profile HTTP/1.1" 200 493 "-" "python-requests/2.32.3"
+2025-05-29 14:25:37 - INFO - aiohttp.access - ::1 [29/May/2025:14:25:36 +0300] "GET /telegram/url HTTP/1.1" 200 222 "-" "python-requests/2.32.3"
+2025-05-29 14:26:08 - INFO - openai._base_client - Retrying request to /chat/completions in 0.397725 seconds
+2025-05-29 14:26:29 - INFO - openai._base_client - Retrying request to /chat/completions in 0.986284 seconds
+2025-05-29 14:26:31 - INFO - httpx - HTTP Request: POST https://hubai.loe.gg/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-29 14:26:31 - INFO - aiohttp.access - ::1 [29/May/2025:14:25:37 +0300] "POST /psychologist HTTP/1.1" 200 3015 "-" "python-requests/2.32.3"
+2025-05-29 14:26:32 - INFO - aiohttp.access - ::1 [29/May/2025:14:26:31 +0300] "GET /psychologist HTTP/1.1" 200 3214 "-" "python-requests/2.32.3"
+2025-05-29 14:26:33 - INFO - aiohttp.access - ::1 [29/May/2025:14:26:32 +0300] "POST /university/add HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 14:26:33 - INFO - aiohttp.access - ::1 [29/May/2025:14:26:33 +0300] "POST /university/add HTTP/1.1" 400 438 "-" "python-requests/2.32.3"
+2025-05-29 14:31:57 - INFO - aiohttp.access - ::1 [29/May/2025:14:31:56 +0300] "POST /auth HTTP/1.1" 401 198 "-" "python-requests/2.32.3"
+2025-05-29 14:32:16 - INFO - aiohttp.access - ::1 [29/May/2025:14:32:11 +0300] "POST /reg HTTP/1.1" 409 243 "-" "python-requests/2.32.3"
+2025-05-29 14:32:45 - INFO - aiohttp.access - ::1 [29/May/2025:14:32:45 +0300] "POST /auth HTTP/1.1" 401 198 "-" "python-requests/2.32.3"
+2025-05-29 14:33:45 - INFO - aiohttp.access - ::1 [29/May/2025:14:33:40 +0300] "POST /reg HTTP/1.1" 409 243 "-" "python-requests/2.32.3"
+2025-05-29 14:37:30 - INFO - aiohttp.access - ::1 [29/May/2025:14:37:25 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-29 14:37:35 - INFO - aiohttp.access - ::1 [29/May/2025:14:37:30 +0300] "POST /reg HTTP/1.1" 409 233 "-" "python-requests/2.32.3"
+2025-05-29 14:37:39 - INFO - aiohttp.access - ::1 [29/May/2025:14:37:35 +0300] "POST /reg HTTP/1.1" 409 233 "-" "python-requests/2.32.3"
+2025-05-29 14:37:44 - ERROR - aiohttp.server - Error handling request from ::1
+Traceback (most recent call last):
+  File "e:\projects\postupishka\api\validate.py", line 29, in wrapper
+    parsed = model(**all_data)
+  File "e:\projects\postupishka\.venv\Lib\site-packages\pydantic\main.py", line 214, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+  File "e:\projects\postupishka\api\validate.py", line 80, in check_email
+    raise EmailError('Email does not comply with email standards or dns mail servers are not found')
+api.validate.EmailError: Email does not comply with email standards or dns mail servers are not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_protocol.py", line 480, in _handle_request
+    resp = await request_handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_app.py", line 569, in _handle
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_middlewares.py", line 117, in impl
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp_apispec\middlewares.py", line 45, in validation_middleware
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\server.py", line 30, in middleware
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\api\validate.py", line 48, in wrapper
+    for error in e.errors():
+                 ^^^^^^^^
+AttributeError: 'EmailError' object has no attribute 'errors'
+2025-05-29 14:37:44 - INFO - aiohttp.access - ::1 [29/May/2025:14:37:39 +0300] "POST /reg HTTP/1.1" 500 247 "-" "python-requests/2.32.3"
+2025-05-29 14:44:11 - INFO - root - Запуск сервера. . .
+2025-05-29 14:44:16 - INFO - aiohttp.access - ::1 [29/May/2025:14:44:11 +0300] "POST /reg HTTP/1.1" 409 233 "-" "python-requests/2.32.3"
+2025-05-29 14:44:24 - INFO - aiohttp.access - ::1 [29/May/2025:14:44:24 +0300] "POST /auth HTTP/1.1" 200 205 "-" "python-requests/2.32.3"
+2025-05-29 14:44:26 - INFO - aiohttp.access - ::1 [29/May/2025:14:44:24 +0300] "GET /profile HTTP/1.1" 200 374 "-" "python-requests/2.32.3"
+2025-05-29 14:44:36 - INFO - aiohttp.access - ::1 [29/May/2025:14:44:26 +0300] "PATCH /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 14:44:37 - INFO - aiohttp.access - ::1 [29/May/2025:14:44:36 +0300] "GET /profile HTTP/1.1" 200 373 "-" "python-requests/2.32.3"
+2025-05-29 14:44:40 - INFO - aiohttp.access - ::1 [29/May/2025:14:44:37 +0300] "PATCH /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 14:44:42 - INFO - aiohttp.access - ::1 [29/May/2025:14:44:40 +0300] "GET /profile HTTP/1.1" 200 493 "-" "python-requests/2.32.3"
+2025-05-29 14:44:43 - INFO - aiohttp.access - ::1 [29/May/2025:14:44:42 +0300] "GET /telegram/url HTTP/1.1" 200 222 "-" "python-requests/2.32.3"
+2025-05-29 14:45:15 - INFO - openai._base_client - Retrying request to /chat/completions in 0.435827 seconds
+2025-05-29 14:45:46 - INFO - openai._base_client - Retrying request to /chat/completions in 0.944975 seconds
+2025-05-29 14:45:48 - INFO - httpx - HTTP Request: POST https://hubai.loe.gg/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-29 14:45:48 - INFO - aiohttp.access - ::1 [29/May/2025:14:44:43 +0300] "POST /psychologist HTTP/1.1" 200 3190 "-" "python-requests/2.32.3"
+2025-05-29 14:45:49 - INFO - aiohttp.access - ::1 [29/May/2025:14:45:48 +0300] "GET /psychologist HTTP/1.1" 200 3389 "-" "python-requests/2.32.3"
+2025-05-29 14:45:50 - INFO - aiohttp.access - ::1 [29/May/2025:14:45:49 +0300] "POST /university/add HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 14:45:50 - INFO - aiohttp.access - ::1 [29/May/2025:14:45:50 +0300] "POST /university/add HTTP/1.1" 400 438 "-" "python-requests/2.32.3"
+2025-05-29 14:49:53 - INFO - root - Запуск сервера. . .
+2025-05-29 14:49:53 - INFO - aiohttp.access - 127.0.0.1 [29/May/2025:14:49:53 +0300] "GET /doc HTTP/1.1" 200 1618 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-29 14:49:53 - INFO - aiohttp.access - 127.0.0.1 [29/May/2025:14:49:53 +0300] "GET /static/swagger/swagger-ui.css HTTP/1.1" 200 241 "http://localhost:8080/doc" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-29 14:49:53 - INFO - aiohttp.access - 127.0.0.1 [29/May/2025:14:49:53 +0300] "GET /static/swagger/swagger-ui-standalone-preset.js HTTP/1.1" 200 248 "http://localhost:8080/doc" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-29 14:49:53 - INFO - aiohttp.access - 127.0.0.1 [29/May/2025:14:49:53 +0300] "GET /static/swagger/swagger-ui-bundle.js HTTP/1.1" 200 248 "http://localhost:8080/doc" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-29 14:49:53 - INFO - aiohttp.access - 127.0.0.1 [29/May/2025:14:49:53 +0300] "GET /swagger.json HTTP/1.1" 200 40396 "http://localhost:8080/doc" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-29 14:49:53 - INFO - aiohttp.access - 127.0.0.1 [29/May/2025:14:49:53 +0300] "GET /static/swagger/favicon-32x32.png HTTP/1.1" 200 237 "http://localhost:8080/doc" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-29 14:49:54 - INFO - aiohttp.access - 127.0.0.1 [29/May/2025:14:49:54 +0300] "GET /swagger.json HTTP/1.1" 200 40396 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-29 14:49:55 - INFO - aiohttp.access - 127.0.0.1 [29/May/2025:14:49:55 +0300] "GET /favicon.ico HTTP/1.1" 404 175 "http://localhost:8080/swagger.json" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-29 14:52:48 - INFO - aiohttp.access - ::1 [29/May/2025:14:52:47 +0300] "POST /auth HTTP/1.1" 401 198 "-" "python-requests/2.32.3"
+2025-05-29 14:53:05 - INFO - aiohttp.access - ::1 [29/May/2025:14:53:00 +0300] "POST /reg HTTP/1.1" 409 243 "-" "python-requests/2.32.3"
+2025-05-29 14:55:00 - INFO - aiohttp.access - ::1 [29/May/2025:14:54:59 +0300] "POST /auth HTTP/1.1" 401 198 "-" "python-requests/2.32.3"
+2025-05-29 14:55:27 - INFO - aiohttp.access - ::1 [29/May/2025:14:55:26 +0300] "POST /auth HTTP/1.1" 401 198 "-" "python-requests/2.32.3"
+2025-05-29 14:55:58 - INFO - aiohttp.access - ::1 [29/May/2025:14:55:57 +0300] "POST /auth HTTP/1.1" 401 198 "-" "python-requests/2.32.3"
+2025-05-29 14:56:34 - INFO - aiohttp.access - ::1 [29/May/2025:14:56:28 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-29 14:56:39 - INFO - aiohttp.access - ::1 [29/May/2025:14:56:34 +0300] "POST /reg HTTP/1.1" 409 233 "-" "python-requests/2.32.3"
+2025-05-29 14:56:43 - INFO - aiohttp.access - ::1 [29/May/2025:14:56:39 +0300] "POST /reg HTTP/1.1" 409 233 "-" "python-requests/2.32.3"
+2025-05-29 14:56:47 - INFO - aiohttp.access - ::1 [29/May/2025:14:56:43 +0300] "POST /reg HTTP/1.1" 400 519 "-" "python-requests/2.32.3"
+2025-05-29 14:56:51 - INFO - aiohttp.access - ::1 [29/May/2025:14:56:47 +0300] "POST /reg HTTP/1.1" 400 455 "-" "python-requests/2.32.3"
+2025-05-29 14:56:55 - INFO - aiohttp.access - ::1 [29/May/2025:14:56:51 +0300] "POST /reg HTTP/1.1" 400 433 "-" "python-requests/2.32.3"
+2025-05-29 14:56:56 - INFO - aiohttp.access - ::1 [29/May/2025:14:56:55 +0300] "POST /auth HTTP/1.1" 200 205 "-" "python-requests/2.32.3"
+2025-05-29 14:56:57 - INFO - aiohttp.access - ::1 [29/May/2025:14:56:56 +0300] "GET /profile HTTP/1.1" 200 374 "-" "python-requests/2.32.3"
+2025-05-29 14:57:07 - INFO - aiohttp.access - ::1 [29/May/2025:14:56:57 +0300] "PATCH /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 14:57:09 - INFO - aiohttp.access - ::1 [29/May/2025:14:57:07 +0300] "GET /profile HTTP/1.1" 200 373 "-" "python-requests/2.32.3"
+2025-05-29 14:57:10 - INFO - aiohttp.access - ::1 [29/May/2025:14:57:09 +0300] "PATCH /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 14:57:12 - INFO - aiohttp.access - ::1 [29/May/2025:14:57:10 +0300] "GET /profile HTTP/1.1" 200 493 "-" "python-requests/2.32.3"
+2025-05-29 14:57:13 - INFO - aiohttp.access - ::1 [29/May/2025:14:57:12 +0300] "GET /telegram/url HTTP/1.1" 200 222 "-" "python-requests/2.32.3"
+2025-05-29 14:57:34 - INFO - openai._base_client - Retrying request to /chat/completions in 0.469288 seconds
+2025-05-29 14:57:54 - INFO - openai._base_client - Retrying request to /chat/completions in 0.908861 seconds
+2025-05-29 14:58:16 - INFO - aiohttp.access - ::1 [29/May/2025:14:57:13 +0300] "POST /psychologist HTTP/1.1" 500 210 "-" "python-requests/2.32.3"
+2025-05-29 14:59:51 - INFO - root - Запуск сервера. . .
+2025-05-29 15:25:44 - INFO - aiohttp.access - ::1 [29/May/2025:15:25:40 +0300] "POST /reg HTTP/1.1" 400 434 "-" "python-requests/2.32.3"
+2025-05-29 15:26:51 - INFO - aiohttp.access - ::1 [29/May/2025:15:26:46 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-29 15:26:52 - INFO - aiohttp.access - ::1 [29/May/2025:15:26:51 +0300] "DELETE /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 15:26:56 - INFO - aiohttp.access - ::1 [29/May/2025:15:26:52 +0300] "POST /reg HTTP/1.1" 400 468 "-" "python-requests/2.32.3"
+2025-05-29 15:27:02 - INFO - aiohttp.access - ::1 [29/May/2025:15:26:56 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-29 15:27:06 - INFO - aiohttp.access - ::1 [29/May/2025:15:27:02 +0300] "POST /reg HTTP/1.1" 409 233 "-" "python-requests/2.32.3"
+2025-05-29 15:27:08 - INFO - aiohttp.access - ::1 [29/May/2025:15:27:06 +0300] "DELETE /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 15:27:08 - INFO - aiohttp.access - ::1 [29/May/2025:15:27:08 +0300] "POST /reg HTTP/1.1" 400 502 "-" "python-requests/2.32.3"
+2025-05-29 15:27:57 - INFO - root - Запуск сервера. . .
+2025-05-29 15:28:03 - INFO - aiohttp.access - ::1 [29/May/2025:15:27:58 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-29 15:28:05 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:03 +0300] "DELETE /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 15:28:09 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:05 +0300] "POST /reg HTTP/1.1" 400 468 "-" "python-requests/2.32.3"
+2025-05-29 15:28:14 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:09 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-29 15:28:18 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:14 +0300] "POST /reg HTTP/1.1" 409 233 "-" "python-requests/2.32.3"
+2025-05-29 15:28:20 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:18 +0300] "DELETE /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 15:28:20 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:20 +0300] "POST /reg HTTP/1.1" 422 512 "-" "python-requests/2.32.3"
+2025-05-29 15:28:25 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:20 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-29 15:28:25 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:25 +0300] "POST /auth HTTP/1.1" 200 205 "-" "python-requests/2.32.3"
+2025-05-29 15:28:26 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:25 +0300] "DELETE /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 15:28:27 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:26 +0300] "POST /auth HTTP/1.1" 401 198 "-" "python-requests/2.32.3"
+2025-05-29 15:28:27 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:27 +0300] "POST /auth HTTP/1.1" 400 407 "-" "python-requests/2.32.3"
+2025-05-29 15:28:28 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:27 +0300] "POST /auth HTTP/1.1" 401 198 "-" "python-requests/2.32.3"
+2025-05-29 15:28:34 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:28 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-29 15:28:35 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:34 +0300] "GET /profile HTTP/1.1" 200 381 "-" "python-requests/2.32.3"
+2025-05-29 15:28:35 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:35 +0300] "GET /profile HTTP/1.1" 401 192 "-" "python-requests/2.32.3"
+2025-05-29 15:28:41 - ERROR - root - Ошибка выполнения запроса: ForeignKeyViolationError: insert or update on table "subjects" violates foreign key constraint "email"
+DETAIL:  Key (email)=(test_user@example.com) is not present in table "users".
+SQL: INSERT INTO subjects (email, subject, current_score, desired_score) VALUES ($1, $2, $3, $4)
+2025-05-29 15:28:41 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:35 +0300] "PATCH /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 15:28:43 - INFO - aiohttp.access - ::1 [29/May/2025:15:28:41 +0300] "GET /profile HTTP/1.1" 200 381 "-" "python-requests/2.32.3"
+2025-05-29 15:34:46 - INFO - aiohttp.access - ::1 [29/May/2025:15:34:42 +0300] "POST /reg HTTP/1.1" 409 243 "-" "python-requests/2.32.3"
+2025-05-29 15:37:09 - ERROR - root - Ошибка подключения к БД: ConnectionDoesNotExistError: connection was closed in the middle of operation
+SQL: INSERT INTO tokens (email, token) VALUES ($1, $2)
+2025-05-29 15:37:09 - ERROR - root - Соединение с БД не установлено
+2025-05-29 15:37:09 - ERROR - root - Ошибка при коммите транзакции: cannot call Transaction.commit(): the underlying connection is closed
+2025-05-29 15:37:09 - INFO - aiohttp.access - ::1 [29/May/2025:15:36:45 +0300] "POST /reg HTTP/1.1" 500 244 "-" "python-requests/2.32.3"
+2025-05-29 15:37:21 - INFO - root - Запуск сервера. . .
+2025-05-29 15:37:26 - ERROR - root - Ошибка выполнения запроса: LockNotAvailableError: canceling statement due to lock timeout
+SQL: INSERT INTO users (first_name, email, password, class_number) VALUES ($1, $2, $3, $4)
+2025-05-29 15:37:26 - ERROR - root - Ошибка выполнения запроса: InFailedSQLTransactionError: current transaction is aborted, commands ignored until end of transaction block
+SQL: DELETE FROM tokens WHERE date < CURRENT_DATE - INTERVAL '1 month'
+2025-05-29 15:37:26 - ERROR - root - Ошибка выполнения запроса: InFailedSQLTransactionError: current transaction is aborted, commands ignored until end of transaction block
+SQL: INSERT INTO tokens (email, token) VALUES ($1, $2)
+2025-05-29 15:37:26 - ERROR - root - Ошибка выполнения запроса: InFailedSQLTransactionError: current transaction is aborted, commands ignored until end of transaction block
+SQL: INSERT INTO subjects (email, subject) VALUES ($1, $2)
+2025-05-29 15:37:26 - INFO - aiohttp.access - ::1 [29/May/2025:15:37:21 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-29 15:37:27 - INFO - aiohttp.access - ::1 [29/May/2025:15:37:26 +0300] "DELETE /profile HTTP/1.1" 401 177 "-" "python-requests/2.32.3"
+2025-05-29 15:37:31 - INFO - aiohttp.access - ::1 [29/May/2025:15:37:27 +0300] "POST /reg HTTP/1.1" 400 468 "-" "python-requests/2.32.3"
+2025-05-29 15:37:38 - INFO - aiohttp.access - ::1 [29/May/2025:15:37:31 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-29 15:37:43 - INFO - aiohttp.access - ::1 [29/May/2025:15:37:38 +0300] "POST /reg HTTP/1.1" 409 233 "-" "python-requests/2.32.3"
+2025-05-29 15:37:46 - INFO - aiohttp.access - ::1 [29/May/2025:15:37:43 +0300] "DELETE /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 15:37:46 - INFO - aiohttp.access - ::1 [29/May/2025:15:37:46 +0300] "POST /reg HTTP/1.1" 422 512 "-" "python-requests/2.32.3"
+2025-05-29 15:37:53 - INFO - aiohttp.access - ::1 [29/May/2025:15:37:46 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-29 15:37:54 - INFO - aiohttp.access - ::1 [29/May/2025:15:37:53 +0300] "POST /auth HTTP/1.1" 200 205 "-" "python-requests/2.32.3"
+2025-05-29 15:37:57 - INFO - aiohttp.access - ::1 [29/May/2025:15:37:54 +0300] "DELETE /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 15:37:58 - INFO - aiohttp.access - ::1 [29/May/2025:15:37:57 +0300] "POST /auth HTTP/1.1" 401 198 "-" "python-requests/2.32.3"
+2025-05-29 15:37:58 - INFO - aiohttp.access - ::1 [29/May/2025:15:37:58 +0300] "POST /auth HTTP/1.1" 400 407 "-" "python-requests/2.32.3"
+2025-05-29 15:38:00 - INFO - aiohttp.access - ::1 [29/May/2025:15:37:58 +0300] "POST /auth HTTP/1.1" 401 198 "-" "python-requests/2.32.3"
+2025-05-29 15:38:05 - ERROR - root - Ошибка выполнения запроса: LockNotAvailableError: canceling statement due to lock timeout
+SQL: INSERT INTO users (first_name, email, password, class_number) VALUES ($1, $2, $3, $4)
+2025-05-29 15:38:05 - ERROR - root - Ошибка выполнения запроса: InFailedSQLTransactionError: current transaction is aborted, commands ignored until end of transaction block
+SQL: DELETE FROM tokens WHERE date < CURRENT_DATE - INTERVAL '1 month'
+2025-05-29 15:38:05 - ERROR - root - Ошибка выполнения запроса: InFailedSQLTransactionError: current transaction is aborted, commands ignored until end of transaction block
+SQL: INSERT INTO tokens (email, token) VALUES ($1, $2)
+2025-05-29 15:38:05 - ERROR - root - Ошибка выполнения запроса: InFailedSQLTransactionError: current transaction is aborted, commands ignored until end of transaction block
+SQL: INSERT INTO subjects (email, subject) VALUES ($1, $2)
+2025-05-29 15:38:06 - INFO - aiohttp.access - ::1 [29/May/2025:15:38:00 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-29 15:38:07 - INFO - aiohttp.access - ::1 [29/May/2025:15:38:06 +0300] "GET /profile HTTP/1.1" 401 177 "-" "python-requests/2.32.3"
+2025-05-29 16:27:48 - INFO - root - Запуск сервера. . .
+2025-05-29 16:27:53 - INFO - aiohttp.access - ::1 [29/May/2025:16:27:48 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-29 16:27:56 - INFO - aiohttp.access - ::1 [29/May/2025:16:27:53 +0300] "DELETE /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 16:28:00 - INFO - aiohttp.access - ::1 [29/May/2025:16:27:56 +0300] "POST /reg HTTP/1.1" 400 468 "-" "python-requests/2.32.3"
+2025-05-29 16:28:06 - INFO - aiohttp.access - ::1 [29/May/2025:16:28:00 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-29 16:28:11 - INFO - aiohttp.access - ::1 [29/May/2025:16:28:06 +0300] "POST /reg HTTP/1.1" 409 233 "-" "python-requests/2.32.3"
+2025-05-29 16:28:14 - INFO - aiohttp.access - ::1 [29/May/2025:16:28:11 +0300] "DELETE /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 16:28:14 - INFO - aiohttp.access - ::1 [29/May/2025:16:28:14 +0300] "POST /reg HTTP/1.1" 422 512 "-" "python-requests/2.32.3"
+2025-05-29 16:28:21 - INFO - aiohttp.access - ::1 [29/May/2025:16:28:14 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-29 16:28:22 - INFO - aiohttp.access - ::1 [29/May/2025:16:28:21 +0300] "POST /auth HTTP/1.1" 200 205 "-" "python-requests/2.32.3"
+2025-05-29 16:28:25 - INFO - aiohttp.access - ::1 [29/May/2025:16:28:22 +0300] "DELETE /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 16:28:26 - INFO - aiohttp.access - ::1 [29/May/2025:16:28:25 +0300] "POST /auth HTTP/1.1" 401 198 "-" "python-requests/2.32.3"
+2025-05-29 16:28:26 - INFO - aiohttp.access - ::1 [29/May/2025:16:28:26 +0300] "POST /auth HTTP/1.1" 400 407 "-" "python-requests/2.32.3"
+2025-05-29 16:28:27 - INFO - aiohttp.access - ::1 [29/May/2025:16:28:26 +0300] "POST /auth HTTP/1.1" 401 198 "-" "python-requests/2.32.3"
+2025-05-29 16:28:33 - INFO - aiohttp.access - ::1 [29/May/2025:16:28:27 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-29 16:28:36 - INFO - aiohttp.access - ::1 [29/May/2025:16:28:33 +0300] "GET /profile HTTP/1.1" 200 381 "-" "python-requests/2.32.3"
+2025-05-29 16:28:36 - INFO - aiohttp.access - ::1 [29/May/2025:16:28:36 +0300] "GET /profile HTTP/1.1" 401 192 "-" "python-requests/2.32.3"
+2025-05-29 16:28:44 - ERROR - root - Ошибка выполнения запроса: ForeignKeyViolationError: insert or update on table "subjects" violates foreign key constraint "email"
+DETAIL:  Key (email)=(test_user@example.com) is not present in table "users".
+SQL: INSERT INTO subjects (email, subject, current_score, desired_score) VALUES ($1, $2, $3, $4)
+2025-05-29 16:28:45 - INFO - aiohttp.access - ::1 [29/May/2025:16:28:36 +0300] "PATCH /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-29 16:28:48 - INFO - aiohttp.access - ::1 [29/May/2025:16:28:45 +0300] "GET /profile HTTP/1.1" 200 381 "-" "python-requests/2.32.3"
+2025-05-29 23:26:53 - INFO - aiohttp.access - ::1 [29/May/2025:23:26:53 +0300] "GET /doc HTTP/1.1" 200 1618 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-29 23:26:53 - INFO - aiohttp.access - ::1 [29/May/2025:23:26:53 +0300] "GET /static/swagger/swagger-ui.css HTTP/1.1" 200 241 "http://localhost:8080/doc" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-29 23:26:53 - INFO - aiohttp.access - ::1 [29/May/2025:23:26:53 +0300] "GET /static/swagger/swagger-ui-standalone-preset.js HTTP/1.1" 200 248 "http://localhost:8080/doc" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-29 23:26:53 - INFO - aiohttp.access - ::1 [29/May/2025:23:26:53 +0300] "GET /static/swagger/swagger-ui-bundle.js HTTP/1.1" 200 248 "http://localhost:8080/doc" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-31 00:28:18 - INFO - root - Запуск сервера. . .
+2025-05-31 00:28:18 - INFO - aiohttp.access - ::1 [31/May/2025:00:28:18 +0300] "GET /doc HTTP/1.1" 200 1618 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-31 00:28:18 - INFO - aiohttp.access - ::1 [31/May/2025:00:28:18 +0300] "GET /static/swagger/swagger-ui.css HTTP/1.1" 200 241 "http://localhost:8080/doc" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-31 00:28:18 - INFO - aiohttp.access - 127.0.0.1 [31/May/2025:00:28:18 +0300] "GET /static/swagger/swagger-ui-standalone-preset.js HTTP/1.1" 200 248 "http://localhost:8080/doc" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-31 00:28:18 - INFO - aiohttp.access - 127.0.0.1 [31/May/2025:00:28:18 +0300] "GET /static/swagger/swagger-ui-bundle.js HTTP/1.1" 200 248 "http://localhost:8080/doc" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-31 00:28:18 - INFO - aiohttp.access - 127.0.0.1 [31/May/2025:00:28:18 +0300] "GET /swagger.json HTTP/1.1" 200 47413 "http://localhost:8080/doc" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-31 00:28:18 - INFO - aiohttp.access - 127.0.0.1 [31/May/2025:00:28:18 +0300] "GET /static/swagger/favicon-32x32.png HTTP/1.1" 200 237 "http://localhost:8080/doc" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-31 00:29:27 - INFO - root - Запуск сервера. . .
+2025-05-31 00:29:28 - INFO - aiohttp.access - 127.0.0.1 [31/May/2025:00:29:28 +0300] "GET /doc HTTP/1.1" 200 1618 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-31 00:29:29 - INFO - aiohttp.access - 127.0.0.1 [31/May/2025:00:29:29 +0300] "GET /swagger.json HTTP/1.1" 200 47475 "http://localhost:8080/doc" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"

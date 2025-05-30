@@ -46,7 +46,7 @@ def get_first_day_of_week(week_offset=0):
 
 
 async def add_info(email:str, content:str):
-    ai_analyzer = Ai(PROMPT_SCHEDULE_ANALIZE, model="gpt-4.1-mini")
+    ai_analyzer = Ai(PROMPT_SCHEDULE_ANALIZE, model="gpt-4.1")
     ai_create = Ai(PROMPT_SCHEDULE_CREATE, model="gpt-4.1")
     async with Database() as db:
         await db.execute("DELETE FROM schedule WHERE week=$1", (get_first_day_of_week(-1),))

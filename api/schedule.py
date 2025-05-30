@@ -11,7 +11,7 @@ import core
 from api import validate
 
 @docs(
-    tags=["Shedule"],
+    tags=["Schedule"],
     summary="Добавление информации о расписании",
     description="Добавляет информацию о необходимом расписании. Ожидается максимально подробная информация и занятиях на ближайшие дни, сразу выполняется перерасчёт расписания. Для доступа требуется Bearer-токен в заголовке Authorization",
     responses={
@@ -49,7 +49,7 @@ async def add(request: web.Request, parsed : validate.Schedule_add) -> web.Respo
     
 
 @docs(
-    tags=["Shedule"],
+    tags=["Schedule"],
     summary="Получение расписания",
     description="Возвращает расписание для пользователя на текущую и на следующую неделю, если такое есть. Для доступа требуется Bearer-токен в заголовке Authorization",
     responses={

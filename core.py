@@ -79,7 +79,7 @@ def is_valid_email(email:str) -> bool:
             return True
         except (dns.resolver.NoAnswer, dns.exception.Timeout):
             return False
-    except dns.resolver.NXDOMAIN:
+    except:
         return False
     
 

@@ -14,7 +14,7 @@ from api import validate
 @docs(
     tags=["Profile"],
     summary="Получение профиля",
-    description="Возвращает информацию о пользователе. Для доступа требуется Bearer-токен в заголовке Authorization",
+    description="Возвращает информацию о пользователе. Если профиль не верифицирован то будет возвращено лишь {'verified': false}. Для доступа требуется Bearer-токен в заголовке Authorization",
     responses={
         200: {"description": "Профиль успешно получен", "schema": sh.UserProfileSchema},
         401: {"description": "Авторизация не выполнена"},
@@ -35,13 +35,14 @@ async def profile_get(request: web.Request) -> web.Response:
             return email
         
         res = await func_db.profile_get(email)
-        result = {"email": res["email"],
-            "first_name": res["first_name"],
-            "class_number": res["class_number"]}
+        if not res["verified"]:
+            return web.json_response({"verified": False}, status=200)
+        
         if res["telegram_id"]:
-            result["username"] = (await bot.get_chat(res["telegram_id"])).username
-        result["subjects"] = await func_db.get_subjects(email)
-        return web.json_response(result, status=200)
+            res["username"] = (await bot.get_chat(res["telegram_id"])).username
+        del res["telegram_id"]
+        res["subjects"] = await func_db.get_subjects(email)
+        return web.json_response(res, status=200)
     except Exception as e:
         logger.error("profile error: ", e)
         return web.Response(status=500, text=str(e))
@@ -85,6 +86,8 @@ async def profile_delete(request: web.Request) -> web.Response:
         204: {"description": "Профиль успешно изменён"},
         400: {"description": "Отсутствует один из параметров", "schema": sh.Error400Schema},
         401: {"description": "Авторизация не выполнена"},
+        409: {"description": "Новые логин или почта заняты", "schema": sh.AlreadyBeenTaken},
+        422: {"description": "Переданный email не соответствует стандартам электронной почты"},
         500: {"description": "Server-side error (Ошибка на стороне сервера)"}
     },
     parameters=[{

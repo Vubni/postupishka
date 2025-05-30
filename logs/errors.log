@@ -166,3 +166,61 @@ Traceback (most recent call last):
     prepare_meth = resp.prepare
                    ^^^^^^^^^^^^
 AttributeError: 'str' object has no attribute 'prepare'
+2025-05-29 14:37:44 - ERROR - aiohttp.server - Error handling request from ::1
+Traceback (most recent call last):
+  File "e:\projects\postupishka\api\validate.py", line 29, in wrapper
+    parsed = model(**all_data)
+  File "e:\projects\postupishka\.venv\Lib\site-packages\pydantic\main.py", line 214, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+  File "e:\projects\postupishka\api\validate.py", line 80, in check_email
+    raise EmailError('Email does not comply with email standards or dns mail servers are not found')
+api.validate.EmailError: Email does not comply with email standards or dns mail servers are not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_protocol.py", line 480, in _handle_request
+    resp = await request_handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_app.py", line 569, in _handle
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp\web_middlewares.py", line 117, in impl
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\.venv\Lib\site-packages\aiohttp_apispec\middlewares.py", line 45, in validation_middleware
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\server.py", line 30, in middleware
+    return await handler(request)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\projects\postupishka\api\validate.py", line 48, in wrapper
+    for error in e.errors():
+                 ^^^^^^^^
+AttributeError: 'EmailError' object has no attribute 'errors'
+2025-05-29 15:28:41 - ERROR - root - Ошибка выполнения запроса: ForeignKeyViolationError: insert or update on table "subjects" violates foreign key constraint "email"
+DETAIL:  Key (email)=(test_user@example.com) is not present in table "users".
+SQL: INSERT INTO subjects (email, subject, current_score, desired_score) VALUES ($1, $2, $3, $4)
+2025-05-29 15:37:09 - ERROR - root - Ошибка подключения к БД: ConnectionDoesNotExistError: connection was closed in the middle of operation
+SQL: INSERT INTO tokens (email, token) VALUES ($1, $2)
+2025-05-29 15:37:09 - ERROR - root - Соединение с БД не установлено
+2025-05-29 15:37:09 - ERROR - root - Ошибка при коммите транзакции: cannot call Transaction.commit(): the underlying connection is closed
+2025-05-29 15:37:26 - ERROR - root - Ошибка выполнения запроса: LockNotAvailableError: canceling statement due to lock timeout
+SQL: INSERT INTO users (first_name, email, password, class_number) VALUES ($1, $2, $3, $4)
+2025-05-29 15:37:26 - ERROR - root - Ошибка выполнения запроса: InFailedSQLTransactionError: current transaction is aborted, commands ignored until end of transaction block
+SQL: DELETE FROM tokens WHERE date < CURRENT_DATE - INTERVAL '1 month'
+2025-05-29 15:37:26 - ERROR - root - Ошибка выполнения запроса: InFailedSQLTransactionError: current transaction is aborted, commands ignored until end of transaction block
+SQL: INSERT INTO tokens (email, token) VALUES ($1, $2)
+2025-05-29 15:37:26 - ERROR - root - Ошибка выполнения запроса: InFailedSQLTransactionError: current transaction is aborted, commands ignored until end of transaction block
+SQL: INSERT INTO subjects (email, subject) VALUES ($1, $2)
+2025-05-29 15:38:05 - ERROR - root - Ошибка выполнения запроса: LockNotAvailableError: canceling statement due to lock timeout
+SQL: INSERT INTO users (first_name, email, password, class_number) VALUES ($1, $2, $3, $4)
+2025-05-29 15:38:05 - ERROR - root - Ошибка выполнения запроса: InFailedSQLTransactionError: current transaction is aborted, commands ignored until end of transaction block
+SQL: DELETE FROM tokens WHERE date < CURRENT_DATE - INTERVAL '1 month'
+2025-05-29 15:38:05 - ERROR - root - Ошибка выполнения запроса: InFailedSQLTransactionError: current transaction is aborted, commands ignored until end of transaction block
+SQL: INSERT INTO tokens (email, token) VALUES ($1, $2)
+2025-05-29 15:38:05 - ERROR - root - Ошибка выполнения запроса: InFailedSQLTransactionError: current transaction is aborted, commands ignored until end of transaction block
+SQL: INSERT INTO subjects (email, subject) VALUES ($1, $2)
+2025-05-29 16:28:44 - ERROR - root - Ошибка выполнения запроса: ForeignKeyViolationError: insert or update on table "subjects" violates foreign key constraint "email"
+DETAIL:  Key (email)=(test_user@example.com) is not present in table "users".
+SQL: INSERT INTO subjects (email, subject, current_score, desired_score) VALUES ($1, $2, $3, $4)

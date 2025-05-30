@@ -7,7 +7,6 @@ from aiohttp_apispec import (
 import aiohttp_cors
 from config import logger
 import asyncio
-
 from api import (profile, auth, telegram, specialization, university, schedule, psychologist)
 
 async def ip_filter_middleware(app, handler):
@@ -69,6 +68,8 @@ if __name__ == "__main__":
     routes = [
         web.post(prefix + 'reg', auth.register),
         web.post(prefix + 'auth', auth.auth),
+        web.post(prefix + 'email', auth.email_verify),
+        
         
         web.get(prefix + 'profile', profile.profile_get),
         web.patch(prefix + 'profile', profile.profile_patch),
@@ -92,6 +93,7 @@ if __name__ == "__main__":
         web.get(prefix + 'specialization/question', specialization.question),
         web.post(prefix + 'specialization/answer', specialization.answer),
         web.get(prefix + 'specialization/result', specialization.get_result),
+        web.get(prefix + 'specialization', specialization.get_timer),
         
         # web.get('/{path:.*}', handle_get_file)
     ]
