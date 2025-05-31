@@ -129,11 +129,35 @@ class Profile_patch(BaseModel):
 class Psych_question(BaseModel):
     question: str
     
+    @field_validator('question')
+    def check_email(cls, v):
+        if not v:
+            raise ValueError('Qestion field cannot be empty')
+        if len(v) > 120:
+            raise ValueError("Question is longer than 120")
+        return v
+    
 class Schedule_add(BaseModel):
     content: str
     
+    @field_validator('content')
+    def check_email(cls, v):
+        if not v:
+            raise ValueError('Content field cannot be empty')
+        if len(v) > 240:
+            raise ValueError("Content is longer than 240")
+        return v
+    
 class Spec_answer(BaseModel):
     answer: str
+    
+    @field_validator('answer')
+    def check_email(cls, v):
+        if not v:
+            raise ValueError('Answer field cannot be empty')
+        if len(v) > 240:
+            raise ValueError("Answer is longer than 240")
+        return v
     
 class Univer_add(BaseModel):
     university: str

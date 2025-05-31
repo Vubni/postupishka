@@ -664,3 +664,12 @@ SQL: INSERT INTO subjects (email, subject, current_score, desired_score) VALUES 
 2025-05-31 00:29:27 - INFO - root - Запуск сервера. . .
 2025-05-31 00:29:28 - INFO - aiohttp.access - 127.0.0.1 [31/May/2025:00:29:28 +0300] "GET /doc HTTP/1.1" 200 1618 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
 2025-05-31 00:29:29 - INFO - aiohttp.access - 127.0.0.1 [31/May/2025:00:29:29 +0300] "GET /swagger.json HTTP/1.1" 200 47475 "http://localhost:8080/doc" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
+2025-05-31 10:32:54 - INFO - root - Запуск сервера. . .
+2025-05-31 10:32:59 - INFO - aiohttp.access - ::1 [31/May/2025:10:32:58 +0300] "POST /auth HTTP/1.1" 200 205 "-" "python-requests/2.32.3"
+2025-05-31 10:33:02 - INFO - aiohttp.access - ::1 [31/May/2025:10:32:59 +0300] "DELETE /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-31 10:33:03 - INFO - aiohttp.access - ::1 [31/May/2025:10:33:02 +0300] "GET /profile HTTP/1.1" 401 177 "-" "python-requests/2.32.3"
+2025-05-31 10:33:10 - INFO - aiohttp.access - ::1 [31/May/2025:10:33:03 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-31 10:33:12 - INFO - aiohttp.access - ::1 [31/May/2025:10:33:10 +0300] "DELETE /profile HTTP/1.1" 204 101 "-" "python-requests/2.32.3"
+2025-05-31 10:33:16 - INFO - aiohttp.access - ::1 [31/May/2025:10:33:12 +0300] "POST /reg HTTP/1.1" 400 468 "-" "python-requests/2.32.3"
+2025-05-31 10:33:24 - INFO - aiohttp.access - ::1 [31/May/2025:10:33:16 +0300] "POST /reg HTTP/1.1" 201 210 "-" "python-requests/2.32.3"
+2025-05-31 10:33:28 - INFO - aiohttp.access - ::1 [31/May/2025:10:33:24 +0300] "POST /reg HTTP/1.1" 409 233 "-" "python-requests/2.32.3"

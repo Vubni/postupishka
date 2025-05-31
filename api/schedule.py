@@ -15,7 +15,7 @@ from api import validate
     summary="Добавление информации о расписании",
     description="Добавляет информацию о необходимом расписании. Ожидается максимально подробная информация и занятиях на ближайшие дни, сразу выполняется перерасчёт расписания. Для доступа требуется Bearer-токен в заголовке Authorization",
     responses={
-        201: {"description": "Информация о расписании успешно добавлена"},
+        204: {"description": "Информация о расписании успешно добавлена"},
         400: {"description": "Отсутствует один из параметров", "schema": sh.Error400Schema},
         401: {"description": "Авторизация не выполнена"},
         422: {"description": "Информация о расписании обработана, но не может быть сохранена", "schema": sh.CreateScheduleError},
@@ -53,7 +53,7 @@ async def add(request: web.Request, parsed : validate.Schedule_add) -> web.Respo
     summary="Получение расписания",
     description="Возвращает расписание для пользователя на текущую и на следующую неделю, если такое есть. Для доступа требуется Bearer-токен в заголовке Authorization",
     responses={
-        200: {"description": "Списокв направлений", "schema": sh.GetSchedule(many=True)},
+        200: {"description": "Расписание", "schema": sh.GetSchedule(many=True)},
         400: {"description": "Отсутствует один из параметров", "schema": sh.Error400Schema},
         401: {"description": "Авторизация не выполнена"},
         500: {"description": "Server-side error (Ошибка на стороне сервера)"}

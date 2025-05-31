@@ -19,17 +19,13 @@ if __name__ == "__main__":
     
     token = auth.get_auth_token()
     
-    psychologist.test_send_question(token)
-    psychologist.test_get_dialog(token)
+    psychologist.run_all_psychologist_tests(token)
     
     university.run_all_university_tests(token)
     
-    schedule.test_add_schedule(token)
-    schedule.test_get_schedule(token)
+    schedule.run_all_schedule_tests(token)
     
-    specialization.test_get_question(token)
-    specialization.test_send_answer(token)
-    specialization.test_get_result(token)
+    specialization.run_all_specialization_tests(token)
     
     # Очистка
-    profile.delete_profile(token)
+    profile.test_profile_delete_success(token)

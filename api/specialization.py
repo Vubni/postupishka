@@ -114,6 +114,8 @@ async def get_result(request: web.Request) -> web.Response:
         result = await func.get_result_handler(email)
         if not result:
             return web.json_response({"error": "Not a single question has been asked! Nothing to answer."}, status=400)
+        if result["status"] == "processing":
+            return web.json_response(result, status=202)
         return web.json_response(result, status=200)
     except Exception as e:
         logger.error("get_result error: ", e)

@@ -101,13 +101,13 @@ class CreateScheduleError(Schema):
     error = fields.Str(description="Причина невозможности добавления в расписание")
     
 class DayScheduleItemSchema(Schema):
-    time_start = fields.Time(required=True, description="Время начала занятия (в формате HH:MM)")
-    time_stop = fields.Time(required=True, description="Время окончания занятия (в формате HH:MM)")
+    time_start = fields.Str(required=True, description="Время начала занятия (в формате HH:MM)")
+    time_stop = fields.Str(required=True, description="Время окончания занятия (в формате HH:MM)")
     name = fields.Str(required=True, description="Название занятия")
     description = fields.Str(required=True, description="Описание занятия")
     
 class DayInfoSchema(Schema):
-    day_in_month = fields.Int(required=True, description="День месяца")
+    day = fields.Int(required=True, description="День месяца")
     schedule = fields.List(fields.Nested(DayScheduleItemSchema), required=True, description="Расписание на день")
     
 class WeekScheduleSchema(Schema):
