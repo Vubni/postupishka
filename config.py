@@ -12,9 +12,12 @@ PROXY_PORT = os.getenv("PROXY_PORT")
 PROXY_USER = os.getenv("PROXY_USER")
 PROXY_PASS = os.getenv("PROXY_PASS")
 
-SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
+EMAIL_HOSTNAME = os.getenv("EMAIL_HOSTNAME")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_USERNAME = os.getenv("EMAIL_USERNAME")
+EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 
-DATE_BASE_CONNECT = {"host": "45.89.190.44", 
+DATE_BASE_CONNECT = {"host": os.getenv("DB_IP"), 
              "user": "user", 
              "password": os.getenv("DB_PASSWORD"), 
              "database": "postupishka"}

@@ -2,14 +2,14 @@ import asyncio
 import aiosmtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from config import logger, SMTP_PASSWORD
+from config import logger, EMAIL_PASSWORD, EMAIL_USERNAME, EMAIL_PORT, EMAIL_HOSTNAME
 
 async def send_email_register(to_email: str, code: str) -> bool:
     smtp_config = {
-        'hostname': 'mail.online-postupishka.ru',
-        'port': 465,
-        'username': 'online-postupishka@online-postupishka.ru',
-        'password': SMTP_PASSWORD,
+        'hostname': EMAIL_HOSTNAME,
+        'port': EMAIL_PORT,
+        'username': EMAIL_USERNAME,
+        'password': EMAIL_PASSWORD,
         'use_tls': True
     }
 
