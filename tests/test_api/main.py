@@ -5,12 +5,7 @@ from config import URL
     
 if __name__ == "__main__":
     import auth, profile, psychologist, university, schedule, specialization
-    
-    try:
-        token = auth.get_auth_token()
-        profile.test_profile_delete_success(token)
-    except:
-        pass
+
     # Регистрация и авторизация
     token = auth.run_auth_tests()
     
