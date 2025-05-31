@@ -11,36 +11,27 @@ from api import (profile, auth, telegram, specialization, university, schedule, 
 
 async def ip_filter_middleware(app, handler):
     async def middleware(request):
-        # # Получаем IP-адрес клиента
-        # client_ip = request.remote
-        
-        # # Если используется прокси, проверяем X-Forwarded-For
-        # forwarded_for = request.headers.get('X-Forwarded-For')
-        # if forwarded_for:
-        #     client_ip = forwarded_for.split(',')[0].strip()
-        
-        # # Разрешенные IP (добавлены локальные адреса)
-        # allowed_ips = {'89.111.140.15', '127.0.0.1', '::1'}
-        
-        # # Проверяем, что IP входит в разрешенные
-        # if client_ip not in allowed_ips:
-        #     return web.Response(status=403, text="Access denied")
-        
+        # Временно разрешаем все запросы на момент конкурса
         return await handler(request)
+    
+        # if request.path in ('/doc', '/swagger.json'):
+        #     return await handler(request)
+
+        # allowed_origins = ['https://online-postupishka.ru']
+        # origin = request.headers.get('Origin') or request.headers.get('Referer')
+
+        # if origin and any(origin.startswith(allowed) for allowed in allowed_origins):
+        #     return await handler(request)
+
+        # logger.warning(f"Доступ запрещен для Origin: {origin}")
+        # return web.Response(status=403, text="Access denied")
     return middleware
 
-def start_bot():
-    from telegram import bot
-    asyncio.run(bot.main())
-    
 if __name__ == "__main__":
-    # import threading
-    # threading.Thread(None, start_bot).start()
-    
     app = web.Application()
 
     cors = aiohttp_cors.setup(app, defaults={
-        "*": aiohttp_cors.ResourceOptions(
+        "https://online-postupishka.ru": aiohttp_cors.ResourceOptions(
             allow_credentials=True,
             expose_headers="*",
             allow_headers="*",
